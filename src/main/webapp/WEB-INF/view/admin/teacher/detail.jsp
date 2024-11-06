@@ -7,7 +7,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Student Information</title>
+                <title>Teacher Information</title>
 
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -27,37 +27,36 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Student information</h1>
+                                <h1 class="mt-4">Teacher information</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item active"> <a href="/admin">Dashboard</a> / <a
-                                            href="/admin/student">Students</a> / Information</li>
+                                            href="/admin/teacher">Teachers</a> / Information</li>
                                 </ol>
 
                                 <div class="container mt-5">
                                     <div class="row">
                                         <div class="col-12 mx-auto">
                                             <div class="d-flex justify-content-between">
-                                                <h3>Thông tin sinh viên</h3>
-
+                                                <h3>Thông tin giảng viên</h3>
                                             </div>
                                             <hr />
                                             <div class="card" style="width: 60%">
-                                                <img class="card-img-top" src="/images/student/${student.avatar}"
+                                                <img class="card-img-top" src="/images/teacher/${teacher.avatar}"
                                                     alt="Card image cap">
                                                 <div class="card-header">
-                                                    Student information
+                                                    Teacher information
                                                 </div>
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">MSSV: ${student.studentId}</li>
-                                                    <li class="list-group-item">Email: ${student.user.email}</li>
-                                                    <li class="list-group-item">Họ và tên: ${student.fullName}</li>
-                                                    <li class="list-group-item">Số điện thoại: ${student.phone}</li>
-                                                    <li class="list-group-item">Năm sinh: ${student.birthDate}</li>
-                                                    <li class="list-group-item">Giới tính: ${student.gender}</li>
-                                                    <li class="list-group-item">Địa chỉ: ${student.address}</li>
+                                                    <li class="list-group-item">Mã giảng viên: ${teacher.teacherId}</li>
+                                                    <li class="list-group-item">Email: ${teacher.user.email}</li>
+                                                    <li class="list-group-item">Họ và tên: ${teacher.fullName}</li>
+                                                    <li class="list-group-item">Số điện thoại: ${teacher.phone}</li>
+                                                    <li class="list-group-item">Năm sinh: ${teacher.birthDate}</li>
+                                                    <li class="list-group-item">Giới tính: ${teacher.gender}</li>
+                                                    <li class="list-group-item">Địa chỉ: ${teacher.address}</li>
                                                 </ul>
                                             </div>
-                                            <a href="/admin/student" class="mt-3 btn btn-success">Back</a>
+                                            <a href="/admin/teacher" class="mt-3 btn btn-success">Back</a>
 
                                         </div>
                                     </div>

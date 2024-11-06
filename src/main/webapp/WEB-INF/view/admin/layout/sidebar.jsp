@@ -10,7 +10,7 @@
                             Dashboard
                         </a>
 
-                        <a class="nav-link" href="/admin/user">
+                        <a class="nav-link" href="/admin/teacher">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Giảng viên
                         </a>
@@ -20,7 +20,7 @@
                             Sinh viên
                         </a>
 
-                        <a class="nav-link" href="/admin/order">
+                        <a class="nav-link" href="/admin">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Môn học
                         </a>

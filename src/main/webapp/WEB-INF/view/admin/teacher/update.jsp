@@ -5,20 +5,23 @@
             <html lang="en">
 
             <head>
-                <meta charset="utf-8" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <meta name="description" content="Quản lý sinh viên" />
-                <meta name="author" content="Quản lý sinh viên" />
-                <title>Create Student</title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Update Teacher</title>
 
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
                 <script>
                     $(document).ready(() => {
                         const avatarFile = $("#avatarFile");
+                        const orgImage = "${newTeacher.avatar}";
+                        if (orgImage) {
+                            const urlImage = "/images/teacher/" + orgImage;
+                            $("#avatarPreview").attr("src", urlImage);
+                            $("#avatarPreview").css({ "display": "block" });
+                        }
                         avatarFile.change(function (e) {
                             const imgURL = URL.createObjectURL(e.target.files[0]);
                             $("#avatarPreview").attr("src", imgURL);
@@ -26,12 +29,6 @@
                         });
                     });
                 </script>
-                <!-- Latest compiled and minified CSS
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-                Latest compiled JavaScript
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
             </head>
 
             <body class="sb-nav-fixed">
@@ -41,19 +38,23 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Create Student</h1>
+                                <h1 class="mt-4">Update Teacher</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item active"> <a href="/admin">Dashboard</a> / <a
-                                            href="/admin/student">Students</a> / Create</li>
+                                            href="/admin/teacher">Teachers</a> / Update</li>
                                 </ol>
+
                                 <div class="container mt-5">
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Create a student</h3>
+                                            <h3>Cập nhật thông tin giảng viên</h3>
                                             <hr />
-                                            <form:form method="post" action="/admin/student/create"
-                                                modelAttribute="newStudent" enctype="multipart/form-data">
-
+                                            <form:form method="post" action="/admin/teacher/update"
+                                                modelAttribute="newTeacher" enctype="multipart/form-data">
+                                                <div class="mb-3" style="display: none">
+                                                    <label class="form-label">ID:</label>
+                                                    <form:input type="text" class="form-control" path="id" />
+                                                </div>
                                                 <div class="row g-3">
                                                     <div class="col-md-6">
                                                         <label class="form-label">Email:</label>
@@ -61,17 +62,16 @@
                                                             path="user.email" />
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Mật khẩu:</label>
-                                                        <form:input type="password" class="form-control"
-                                                            path="user.password" />
-                                                    </div>
-                                                    <div class="col-md-6">
                                                         <label class="form-label">MSSV:</label>
-                                                        <form:input type="text" class="form-control" path="studentId" />
+                                                        <form:input type="text" class="form-control" path="teacherId" />
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Họ và tên:</label>
                                                         <form:input type="text" class="form-control" path="fullName" />
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Năm sinh:</label>
+                                                        <form:input type="text" class="form-control" path="birthDate" />
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Số điện thoại:</label>
@@ -93,14 +93,14 @@
                                                         <label for="avatarFile" class="form-label">Hình đại
                                                             diện:</label>
                                                         <input class="form-control" type="file" id="avatarFile"
-                                                            name="studentAvatarFile" accept=".png, .jpg, .jpeg" />
+                                                            name="teacherAvatarFile" accept=".png, .jpg, .jpeg" />
                                                     </div>
                                                     <div class="col-md-12">
                                                         <img style="max-height: 250px; display: none;"
                                                             alt="avatar preview" id="avatarPreview">
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                        <button type="submit" class="btn btn-primary">Update</button>
                                                     </div>
                                                 </div>
 

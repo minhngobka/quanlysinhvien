@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import vn.nmcnpm.quanlysinhvien.domain.Student;
-import vn.nmcnpm.quanlysinhvien.domain.User;
 import vn.nmcnpm.quanlysinhvien.repository.StudentRepository;
 import vn.nmcnpm.quanlysinhvien.repository.UserRepository;
 
@@ -21,7 +20,7 @@ public class StudentService {
         this.userRepository = userRepository;
     }
 
-    public Student handleSaveStudent(Student student) {
+    public void handleSaveStudent(Student student) {
         if (student.getGender().equals("MALE")) {
             student.setGender("Nam");
         } else if (student.getGender().equals("FEMALE")) {
@@ -29,7 +28,7 @@ public class StudentService {
         } else {
             student.setGender("Khác");
         }
-        return this.studentRepository.save(student);
+        this.studentRepository.save(student);
     }
 
     public List<Student> getAllStudents() {
@@ -44,5 +43,9 @@ public class StudentService {
         Student student = this.studentRepository.findById(id).get();
         this.studentRepository.deleteById(id);
         this.userRepository.deleteById(student.getUser().getId());
+    }
+
+    public long countStudents() {
+        return this.studentRepository.count();
     }
 }

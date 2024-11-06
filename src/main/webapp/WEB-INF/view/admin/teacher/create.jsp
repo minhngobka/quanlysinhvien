@@ -10,7 +10,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="Quản lý sinh viên" />
                 <meta name="author" content="Quản lý sinh viên" />
-                <title>Create Student</title>
+                <title>Create Teacher</title>
 
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -41,18 +41,18 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Create Student</h1>
+                                <h1 class="mt-4">Create Teacher</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item active"> <a href="/admin">Dashboard</a> / <a
-                                            href="/admin/student">Students</a> / Create</li>
+                                            href="/admin/teacher">Teachers</a> / Create</li>
                                 </ol>
                                 <div class="container mt-5">
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Create a student</h3>
+                                            <h3>Create a teacher</h3>
                                             <hr />
-                                            <form:form method="post" action="/admin/student/create"
-                                                modelAttribute="newStudent" enctype="multipart/form-data">
+                                            <form:form method="post" action="/admin/teacher/create"
+                                                modelAttribute="newTeacher" enctype="multipart/form-data">
 
                                                 <div class="row g-3">
                                                     <div class="col-md-6">
@@ -66,8 +66,8 @@
                                                             path="user.password" />
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">MSSV:</label>
-                                                        <form:input type="text" class="form-control" path="studentId" />
+                                                        <label class="form-label">Mã giảng viên:</label>
+                                                        <form:input type="text" class="form-control" path="teacherId" />
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Họ và tên:</label>
@@ -93,7 +93,7 @@
                                                         <label for="avatarFile" class="form-label">Hình đại
                                                             diện:</label>
                                                         <input class="form-control" type="file" id="avatarFile"
-                                                            name="studentAvatarFile" accept=".png, .jpg, .jpeg" />
+                                                            name="teacherAvatarFile" accept=".png, .jpg, .jpeg" />
                                                     </div>
                                                     <div class="col-md-12">
                                                         <img style="max-height: 250px; display: none;"

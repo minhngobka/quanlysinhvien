@@ -81,7 +81,7 @@ public class StudentController {
     }
 
     @PostMapping("/admin/student/update")
-    public String updateProductPage(Model model,
+    public String updateStudentPage(Model model,
             @ModelAttribute("newStudent") Student student,
             @RequestParam("studentAvatarFile") MultipartFile file) {
 
