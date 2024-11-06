@@ -20,6 +20,9 @@ public class Student {
     private String fullName;
     private String birthDate;
     private String gender;
+    private String address;
+    private String phone;
+    private String avatar;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -71,6 +74,30 @@ public class Student {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
 }
