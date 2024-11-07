@@ -1,10 +1,14 @@
 package vn.nmcnpm.quanlysinhvien.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
@@ -37,6 +41,16 @@ public class Teacher {
     @JoinColumn(name = "user_id")
     @Valid
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    @OneToMany(mappedBy = "teacher")
+    private List<ClassCourse> classCourses;
+
+    @OneToMany(mappedBy = "teacher")
+    private List<Grade> grades;
 
     public long getId() {
         return id;
@@ -108,6 +122,30 @@ public class Teacher {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public List<ClassCourse> getClassCourses() {
+        return classCourses;
+    }
+
+    public void setClassCourses(List<ClassCourse> classCourses) {
+        this.classCourses = classCourses;
+    }
+
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
     }
 
 }

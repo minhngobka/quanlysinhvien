@@ -1,10 +1,13 @@
 package vn.nmcnpm.quanlysinhvien.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
@@ -37,6 +40,9 @@ public class Student {
     @JoinColumn(name = "user_id")
     @Valid
     private User user;
+
+    @OneToMany(mappedBy = "student")
+    private List<Grade> grades;
 
     public long getId() {
         return id;
@@ -108,6 +114,14 @@ public class Student {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
     }
 
 }
