@@ -112,6 +112,13 @@
                                                         <form:input type="text" class="form-control" path="address" />
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <label class="form-label">Vai trò:</label>
+                                                        <form:select class="form-select" path="user.role.name">
+                                                            <form:option value="TEACHER">TEACHER</form:option>
+                                                            <form:option value="ADMIN">ADMIN</form:option>
+                                                        </form:select>
+                                                    </div>
+                                                    <div class="col-md-6">
                                                         <label for="avatarFile" class="form-label">Hình đại
                                                             diện:</label>
                                                         <input class="form-control" type="file" id="avatarFile"

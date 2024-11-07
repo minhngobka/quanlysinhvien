@@ -2,8 +2,8 @@ package vn.nmcnpm.quanlysinhvien.controller.admin;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,11 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
 
 @Controller
 public class StudentController {
@@ -33,11 +29,14 @@ public class StudentController {
     private final UserService userService;
     private final UploadService uploadService;
     private final StudentService studentService;
+    private final PasswordEncoder passwordEncoder;
 
-    public StudentController(UserService userService, UploadService uploadService, StudentService studentService) {
+    public StudentController(UserService userService, UploadService uploadService, StudentService studentService,
+            PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.uploadService = uploadService;
         this.studentService = studentService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/admin/student")
@@ -71,35 +70,12 @@ public class StudentController {
             return "/admin/student/create";
         }
 
-        // Kiểm tra lỗi của đối tượng user được liên kết
-        User currentUser = student.getUser();
-        if (currentUser != null) {
-            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-            Validator validator = factory.getValidator();
-            Set<ConstraintViolation<User>> violations = validator.validate(currentUser);
-
-            if (!violations.isEmpty()) {
-                for (ConstraintViolation<User> violation : violations) {
-                    String propertyPath = violation.getPropertyPath().toString();
-                    String message = violation.getMessage();
-
-                    // Kiểm tra thuộc tính và gán lỗi vào đúng trường
-                    if ("email".equals(propertyPath)) {
-                        newStudentBindingResult.rejectValue("user.email", "error.user.email", message);
-                    } else if ("password".equals(propertyPath)) {
-                        newStudentBindingResult.rejectValue("user.password", "error.user.password", message);
-                    }
-
-                }
-                return "/admin/student/create";
-            }
-        }
-
         String avatar = this.uploadService.handleSaveUpload(file, "student");
+        String hashPassword = this.passwordEncoder.encode(student.getUser().getPassword());
 
         User user = new User();
         user.setEmail(student.getUser().getEmail());
-        user.setPassword(student.getUser().getPassword());
+        user.setPassword(hashPassword);
         user.setRole(this.userService.getRoleByName("STUDENT"));
         this.userService.handleSaveUser(user);
 

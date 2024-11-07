@@ -58,12 +58,13 @@
                                                 <div class="row g-3">
                                                     <div class="col-md-6">
                                                         <label class="form-label">Email:</label>
-                                                        <form:input type="email" class="form-control"
-                                                            path="user.email" />
+                                                        <form:input type="email" class="form-control" path="user.email"
+                                                            disabled="true" />
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">MSSV:</label>
-                                                        <form:input type="text" class="form-control" path="studentId" />
+                                                        <form:input type="text" class="form-control" path="studentId"
+                                                            disabled="true" />
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Họ và tên:</label>

@@ -31,4 +31,8 @@ public class UserService {
         return this.roleRepository.findByName(name);
     }
 
+    public User getUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
+    }
+
 }
