@@ -65,7 +65,7 @@ public class TeacherController {
             @RequestParam("teacherAvatarFile") MultipartFile file) {
 
         if (newTeacherBindingResult.hasErrors()) {
-            return "/admin/teacher/create";
+            return "admin/teacher/create";
         }
 
         String avatar = this.uploadService.handleSaveUpload(file, "teacher");
