@@ -7,6 +7,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "teachers")
@@ -16,7 +20,12 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
+    @Size(min = 8, message = "Mã giảng viên phải có tối thiểu 8 ký tự")
     private String teacherId;
+
+    @NotNull
+    @NotEmpty(message = "Họ và tên không được để rỗng")
     private String fullName;
     private String birthDate;
     private String gender;
@@ -26,6 +35,7 @@ public class Teacher {
 
     @OneToOne
     @JoinColumn(name = "user_id")
+    @Valid
     private User user;
 
     public long getId() {

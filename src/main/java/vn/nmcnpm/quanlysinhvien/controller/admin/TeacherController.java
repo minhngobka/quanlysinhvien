@@ -2,9 +2,11 @@ package vn.nmcnpm.quanlysinhvien.controller.admin;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Valid;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import vn.nmcnpm.quanlysinhvien.domain.Teacher;
 import vn.nmcnpm.quanlysinhvien.domain.User;
 import vn.nmcnpm.quanlysinhvien.service.TeacherService;
@@ -54,8 +61,37 @@ public class TeacherController {
 
     @PostMapping(value = "/admin/teacher/create")
     public String createTeacherPage(Model model,
-            @ModelAttribute("newTeacher") Teacher teacher,
+            @ModelAttribute("newTeacher") @Valid Teacher teacher,
+            BindingResult newTeacherBindingResult,
             @RequestParam("teacherAvatarFile") MultipartFile file) {
+
+        if (newTeacherBindingResult.hasErrors()) {
+            return "/admin/teacher/create";
+        }
+
+        // Kiểm tra lỗi của đối tượng user được liên kết
+        User currentUser = teacher.getUser();
+        if (currentUser != null) {
+            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+            Validator validator = factory.getValidator();
+            Set<ConstraintViolation<User>> violations = validator.validate(currentUser);
+
+            if (!violations.isEmpty()) {
+                for (ConstraintViolation<User> violation : violations) {
+                    String propertyPath = violation.getPropertyPath().toString();
+                    String message = violation.getMessage();
+
+                    // Kiểm tra thuộc tính và gán lỗi vào đúng trường
+                    if ("email".equals(propertyPath)) {
+                        newTeacherBindingResult.rejectValue("user.email", "error.user.email", message);
+                    } else if ("password".equals(propertyPath)) {
+                        newTeacherBindingResult.rejectValue("user.password", "error.user.password", message);
+                    }
+
+                }
+                return "/admin/teacher/create";
+            }
+        }
 
         String avatar = this.uploadService.handleSaveUpload(file, "teacher");
 

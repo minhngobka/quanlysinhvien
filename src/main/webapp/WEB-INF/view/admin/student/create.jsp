@@ -55,23 +55,46 @@
                                                 modelAttribute="newStudent" enctype="multipart/form-data">
 
                                                 <div class="row g-3">
+                                                    <c:set var="errorEmail">
+                                                        <form:errors path="user.email" cssClass="invalid-feedback" />
+                                                    </c:set>
+                                                    <c:set var="errorPassword">
+                                                        <form:errors path="user.password" cssClass="invalid-feedback" />
+                                                    </c:set>
+                                                    <c:set var="errorStudentId">
+                                                        <form:errors path="studentId" cssClass="invalid-feedback" />
+                                                    </c:set>
+                                                    <c:set var="errorFullName">
+                                                        <form:errors path="fullName" cssClass="invalid-feedback" />
+                                                    </c:set>
                                                     <div class="col-md-6">
+
                                                         <label class="form-label">Email:</label>
-                                                        <form:input type="email" class="form-control"
+                                                        <form:input type="email"
+                                                            class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
                                                             path="user.email" />
+                                                        ${errorEmail}
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Mật khẩu:</label>
-                                                        <form:input type="password" class="form-control"
+                                                        <form:input type="password"
+                                                            class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
                                                             path="user.password" />
+                                                        ${errorPassword}
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">MSSV:</label>
-                                                        <form:input type="text" class="form-control" path="studentId" />
+                                                        <form:input type="text"
+                                                            class="form-control ${not empty errorStudentId ? 'is-invalid' : ''}"
+                                                            path="studentId" />
+                                                        ${errorStudentId}
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Họ và tên:</label>
-                                                        <form:input type="text" class="form-control" path="fullName" />
+                                                        <form:input type="text"
+                                                            class="form-control ${not empty errorFullName ? 'is-invalid' : ''}"
+                                                            path="fullName" />
+                                                        ${errorFullName}
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Số điện thoại:</label>
