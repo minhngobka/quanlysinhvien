@@ -32,9 +32,6 @@ public class Department {
     @OneToMany(mappedBy = "department")
     private List<Course> courses;
 
-    @OneToMany(mappedBy = "department")
-    private List<Classe> classes;
-
     public long getId() {
         return id;
     }
@@ -81,14 +78,6 @@ public class Department {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
-    }
-
-    public List<Classe> getClasses() {
-        return classes;
-    }
-
-    public void setClasses(List<Classe> classes) {
-        this.classes = classes;
     }
 
 }

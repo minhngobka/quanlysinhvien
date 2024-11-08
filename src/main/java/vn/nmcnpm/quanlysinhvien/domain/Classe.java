@@ -24,22 +24,14 @@ public class Classe {
     private String classId;
 
     @NotNull
-    private String semester;
-
-    public String getSemester() {
-        return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
-    }
+    private String name;
 
     @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
 
     @OneToMany(mappedBy = "classe")
-    private List<ClassCourse> classCourses;
+    private List<Student> students;
 
     public long getId() {
         return id;
@@ -57,20 +49,28 @@ public class Classe {
         this.classId = classId;
     }
 
-    public Department getDepartment() {
-        return department;
+    public String getName() {
+        return name;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public List<ClassCourse> getClassCourses() {
-        return classCourses;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setClassCourses(List<ClassCourse> classCourses) {
-        this.classCourses = classCourses;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
 }

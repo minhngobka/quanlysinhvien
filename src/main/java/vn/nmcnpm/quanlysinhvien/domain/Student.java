@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -43,6 +44,13 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     private List<Grade> grades;
+
+    @OneToMany(mappedBy = "student")
+    private List<CourseRegistration> courseRegistrations;
+
+    @ManyToOne
+    @JoinColumn(name = "class_id")
+    private Classe classe;
 
     public long getId() {
         return id;
@@ -84,14 +92,6 @@ public class Student {
         this.gender = gender;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -116,12 +116,36 @@ public class Student {
         this.avatar = avatar;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public List<Grade> getGrades() {
         return grades;
     }
 
     public void setGrades(List<Grade> grades) {
         this.grades = grades;
+    }
+
+    public List<CourseRegistration> getCourseRegistrations() {
+        return courseRegistrations;
+    }
+
+    public void setCourseRegistrations(List<CourseRegistration> courseRegistrations) {
+        this.courseRegistrations = courseRegistrations;
+    }
+
+    public Classe getClasse() {
+        return classe;
+    }
+
+    public void setClasse(Classe classe) {
+        this.classe = classe;
     }
 
 }

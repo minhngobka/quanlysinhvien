@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,9 +20,10 @@ public class ClassCourse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "class_id")
-    private Classe classe;
+    private String classCourseId;
+    private String semester;
+    private String classRoom;
+    private String preiod;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
@@ -34,13 +36,8 @@ public class ClassCourse {
     @OneToMany(mappedBy = "classCourse")
     private List<Grade> grades;
 
-    public List<Grade> getGrades() {
-        return grades;
-    }
-
-    public void setGrades(List<Grade> grades) {
-        this.grades = grades;
-    }
+    @OneToOne(mappedBy = "classCourse")
+    private CourseRegistration courseRegistration;
 
     public long getId() {
         return id;
@@ -50,12 +47,36 @@ public class ClassCourse {
         this.id = id;
     }
 
-    public Classe getClasse() {
-        return classe;
+    public String getClassCourseId() {
+        return classCourseId;
     }
 
-    public void setClasse(Classe classe) {
-        this.classe = classe;
+    public void setClassCourseId(String classCourseId) {
+        this.classCourseId = classCourseId;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public String getClassRoom() {
+        return classRoom;
+    }
+
+    public void setClassRoom(String classRoom) {
+        this.classRoom = classRoom;
+    }
+
+    public String getPreiod() {
+        return preiod;
+    }
+
+    public void setPreiod(String preiod) {
+        this.preiod = preiod;
     }
 
     public Course getCourse() {
@@ -72,6 +93,22 @@ public class ClassCourse {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
+    }
+
+    public CourseRegistration getCourseRegistration() {
+        return courseRegistration;
+    }
+
+    public void setCourseRegistration(CourseRegistration courseRegistration) {
+        this.courseRegistration = courseRegistration;
     }
 
 }

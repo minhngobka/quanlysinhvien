@@ -50,7 +50,7 @@ public class Teacher {
     private List<ClassCourse> classCourses;
 
     @OneToMany(mappedBy = "teacher")
-    private List<Grade> grades;
+    private List<Classe> classes;
 
     public long getId() {
         return id;
@@ -92,14 +92,6 @@ public class Teacher {
         this.gender = gender;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -124,6 +116,14 @@ public class Teacher {
         this.avatar = avatar;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Department getDepartment() {
         return department;
     }
@@ -140,12 +140,12 @@ public class Teacher {
         this.classCourses = classCourses;
     }
 
-    public List<Grade> getGrades() {
-        return grades;
+    public List<Classe> getClasses() {
+        return classes;
     }
 
-    public void setGrades(List<Grade> grades) {
-        this.grades = grades;
+    public void setClasses(List<Classe> classes) {
+        this.classes = classes;
     }
 
 }
