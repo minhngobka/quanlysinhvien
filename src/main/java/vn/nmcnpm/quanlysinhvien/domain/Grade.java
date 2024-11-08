@@ -19,7 +19,6 @@ public class Grade {
     private double finalSorce;
     private double totalSorce;
     private String coefficient;
-    private String semester;
     private String comment;
     private String gradeEntryDate;
 
@@ -73,14 +72,6 @@ public class Grade {
 
     public void setCoefficient(String coefficient) {
         this.coefficient = coefficient;
-    }
-
-    public String getSemester() {
-        return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
     }
 
     public String getComment() {

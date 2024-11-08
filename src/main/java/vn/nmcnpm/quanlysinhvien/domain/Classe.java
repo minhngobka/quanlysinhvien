@@ -23,6 +23,17 @@ public class Classe {
     @NotNull
     private String classId;
 
+    @NotNull
+    private String semester;
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
