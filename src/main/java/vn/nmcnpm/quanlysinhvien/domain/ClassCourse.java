@@ -11,19 +11,41 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "class_courses")
+@Valid
 public class ClassCourse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
+    @NotEmpty(message = "Mã lớp học không được bỏ trống")
     private String classCourseId;
+
+    @NotNull
+    @NotEmpty(message = "Không được bỏ trống")
     private String semester;
-    private String classRoom;
+
+    @NotNull
+    @NotEmpty(message = "Không được bỏ trống")
+    private String classroom;
+
+    private String weekday;
+
+    @NotNull
+    @NotEmpty(message = "Không được bỏ trống")
     private String preiod;
+
+    @NotNull
+    @Min(value = 0, message = "Không được nhỏ hơn 0")
+    private int studentLimit;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
@@ -61,14 +83,6 @@ public class ClassCourse {
 
     public void setSemester(String semester) {
         this.semester = semester;
-    }
-
-    public String getClassRoom() {
-        return classRoom;
-    }
-
-    public void setClassRoom(String classRoom) {
-        this.classRoom = classRoom;
     }
 
     public String getPreiod() {
@@ -109,6 +123,30 @@ public class ClassCourse {
 
     public void setCourseRegistration(CourseRegistration courseRegistration) {
         this.courseRegistration = courseRegistration;
+    }
+
+    public int getStudentLimit() {
+        return studentLimit;
+    }
+
+    public void setStudentLimit(int studentLimit) {
+        this.studentLimit = studentLimit;
+    }
+
+    public String getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(String classroom) {
+        this.classroom = classroom;
+    }
+
+    public String getWeekday() {
+        return weekday;
+    }
+
+    public void setWeekday(String weekday) {
+        this.weekday = weekday;
     }
 
 }
