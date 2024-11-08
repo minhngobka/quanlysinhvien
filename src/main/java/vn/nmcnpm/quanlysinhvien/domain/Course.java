@@ -10,6 +10,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -21,14 +23,25 @@ public class Course {
     private long id;
 
     @NotNull
+    @NotEmpty(message = "Không để trống mã môn học")
     private String courseId;
 
     @NotNull
+    @NotEmpty(message = "Không để trống tên môn học")
     private String name;
 
+    @NotNull
+    @Min(value = 1, message = "TCLT phải lớn hơn 0")
     private int theoreticalCredits;
     private int practicalCredits;
+
+    @NotNull
+    @Min(value = 1, message = "TCBT phải lớn hơn 0")
     private int execiseCredits;
+
+    @NotNull
+    @NotEmpty(message = "Không được để trống hệ số điểm")
+    private String coefficient;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
@@ -99,6 +112,14 @@ public class Course {
 
     public void setClassCourses(List<ClassCourse> classCourses) {
         this.classCourses = classCourses;
+    }
+
+    public String getCoefficient() {
+        return coefficient;
+    }
+
+    public void setCoefficient(String coefficient) {
+        this.coefficient = coefficient;
     }
 
 }

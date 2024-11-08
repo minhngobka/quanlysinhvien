@@ -18,7 +18,6 @@ public class Grade {
     private double midtermSorce;
     private double finalSorce;
     private double totalSorce;
-    private String coefficient;
     private String comment;
     private String gradeEntryDate;
 
@@ -64,14 +63,6 @@ public class Grade {
 
     public void setTotalSorce(double totalSorce) {
         this.totalSorce = totalSorce;
-    }
-
-    public String getCoefficient() {
-        return coefficient;
-    }
-
-    public void setCoefficient(String coefficient) {
-        this.coefficient = coefficient;
     }
 
     public String getComment() {
