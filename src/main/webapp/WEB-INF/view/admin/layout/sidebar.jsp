@@ -25,6 +25,11 @@
                             Môn học
                         </a>
 
+                        <a class="nav-link" href="/admin/class">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Lớp học
+                        </a>
+
                         <a class="nav-link" href="/admin/class-course">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Lớp môn học

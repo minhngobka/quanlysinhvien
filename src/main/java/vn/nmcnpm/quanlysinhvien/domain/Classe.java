@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -21,9 +22,11 @@ public class Classe {
     private long id;
 
     @NotNull
+    @NotEmpty(message = "Không được bỏ trống mã lớp")
     private String classId;
 
     @NotNull
+    @NotEmpty(message = "Không được bỏ trống tên lớp")
     private String name;
 
     @ManyToOne

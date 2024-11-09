@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import vn.nmcnpm.quanlysinhvien.domain.Classe;
 import vn.nmcnpm.quanlysinhvien.domain.Student;
 import vn.nmcnpm.quanlysinhvien.domain.User;
+import vn.nmcnpm.quanlysinhvien.service.ClasseService;
 import vn.nmcnpm.quanlysinhvien.service.StudentService;
 import vn.nmcnpm.quanlysinhvien.service.UploadService;
 import vn.nmcnpm.quanlysinhvien.service.UserService;
@@ -30,13 +32,15 @@ public class StudentController {
     private final UploadService uploadService;
     private final StudentService studentService;
     private final PasswordEncoder passwordEncoder;
+    private final ClasseService classeService;
 
     public StudentController(UserService userService, UploadService uploadService, StudentService studentService,
-            PasswordEncoder passwordEncoder) {
+            PasswordEncoder passwordEncoder, ClasseService classeService) {
         this.userService = userService;
         this.uploadService = uploadService;
         this.studentService = studentService;
         this.passwordEncoder = passwordEncoder;
+        this.classeService = classeService;
     }
 
     @GetMapping("/admin/student")
@@ -56,6 +60,8 @@ public class StudentController {
 
     @GetMapping("/admin/student/create")
     public String getCreateStudentPage(Model model) {
+        List<Classe> classes = this.classeService.getAllClasses();
+        model.addAttribute("classes", classes);
         model.addAttribute("newStudent", new Student());
         return "admin/student/create";
     }
@@ -67,6 +73,8 @@ public class StudentController {
             @RequestParam("studentAvatarFile") MultipartFile file) {
 
         if (newStudentBindingResult.hasErrors()) {
+            List<Classe> classes = this.classeService.getAllClasses();
+            model.addAttribute("classes", classes);
             return "admin/student/create";
         }
 
@@ -89,6 +97,8 @@ public class StudentController {
     @GetMapping("/admin/student/update/{id}")
     public String getUpdateStudentPage(Model model, @PathVariable long id) {
         Student currentStudent = this.studentService.getStudentById(id).get();
+        List<Classe> classes = this.classeService.getAllClasses();
+        model.addAttribute("classes", classes);
         model.addAttribute("newStudent", currentStudent);
         return "admin/student/update";
     }
@@ -111,6 +121,7 @@ public class StudentController {
             currentStudent.setAddress(student.getAddress());
             currentStudent.setBirthDate(student.getBirthDate());
             currentStudent.setGender(student.getGender());
+            currentStudent.setClasse(student.getClasse());
 
             this.studentService.handleSaveStudent(currentStudent);
         }

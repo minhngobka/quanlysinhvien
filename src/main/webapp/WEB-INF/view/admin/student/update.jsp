@@ -74,11 +74,20 @@
                                                         <label class="form-label">Năm sinh:</label>
                                                         <form:input type="text" class="form-control" path="birthDate" />
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <label class="form-label">Số điện thoại:</label>
                                                         <form:input type="text" class="form-control" path="phone" />
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <label class="form-label">Lớp học:</label>
+                                                        <form:select class="form-select" path="classe.id">
+                                                            <c:forEach var="classe" items="${classes}">
+                                                                <form:option value="${classe.id}">${classe.name}
+                                                                </form:option>
+                                                            </c:forEach>
+                                                        </form:select>
+                                                    </div>
+                                                    <div class="col-md-2">
                                                         <label class="form-label">Giới tính:</label>
                                                         <form:select class="form-select" path="gender">
                                                             <form:option value="MALE">Nam</form:option>
