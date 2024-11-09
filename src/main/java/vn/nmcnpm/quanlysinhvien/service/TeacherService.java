@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import vn.nmcnpm.quanlysinhvien.domain.Teacher;
+import vn.nmcnpm.quanlysinhvien.domain.User;
 import vn.nmcnpm.quanlysinhvien.repository.TeacherRepository;
 import vn.nmcnpm.quanlysinhvien.repository.UserRepository;
 
@@ -26,6 +27,10 @@ public class TeacherService {
 
     public Optional<Teacher> getTeacherById(long id) {
         return this.teacherRepository.findById(id);
+    }
+
+    public Teacher getTeacherByUser(User user) {
+        return this.teacherRepository.findByUser(user);
     }
 
     public void handleSaveTeacher(Teacher teacher) {

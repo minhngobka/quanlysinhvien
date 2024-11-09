@@ -5,29 +5,12 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Features</div>
-                        <a class="nav-link" href="/admin">
+                        <a class="nav-link" href="/teacher">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
-                        </a>
-
-                        <a class="nav-link" href="/admin/teacher">
+                        </a><a class="nav-link" href="/teacher/infor">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Giảng viên
-                        </a>
-
-                        <a class="nav-link" href="/admin/student">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Sinh viên
-                        </a>
-
-                        <a class="nav-link" href="/admin/course">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Môn học
-                        </a>
-
-                        <a class="nav-link" href="/admin/class-course">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Lớp môn học
+                            Hồ sơ
                         </a>
 
                     </div>

@@ -16,7 +16,7 @@
                 <script>
                     $(document).ready(() => {
                         const avatarFile = $("#avatarFile");
-                        const orgImage = "${newTeacher.avatar}";
+                        const orgImage = "${currentTeacher.avatar}";
                         if (orgImage) {
                             const urlImage = "/images/teacher/" + orgImage;
                             $("#avatarPreview").attr("src", urlImage);
@@ -38,10 +38,11 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Update Teacher</h1>
+                                <h1 class="mt-4">Update Teacher Infor</h1>
                                 <ol class="breadcrumb mb-4">
-                                    <li class="breadcrumb-item active"> <a href="/admin">Dashboard</a> / <a
-                                            href="/admin/teacher">Teachers</a> / Update</li>
+                                    <li class="breadcrumb-item active"> <a href="/teacher">Dashboard</a> / <a
+                                            href="/teacher/infor">Teacher Infor</a> / Update
+                                    </li>
                                 </ol>
 
                                 <div class="container mt-5">
@@ -49,8 +50,8 @@
                                         <div class="col-md-6 col-12 mx-auto">
                                             <h3>Cập nhật thông tin giảng viên</h3>
                                             <hr />
-                                            <form:form method="post" action="/admin/teacher/update"
-                                                modelAttribute="newTeacher" enctype="multipart/form-data">
+                                            <form:form method="post" action="/teacher/infor/update"
+                                                modelAttribute="currentTeacher" enctype="multipart/form-data">
                                                 <div class="mb-3" style="display: none">
                                                     <label class="form-label">ID:</label>
                                                     <form:input type="text" class="form-control" path="id" />
@@ -101,7 +102,7 @@
                                                             alt="avatar preview" id="avatarPreview">
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                        <button type="submit" class="btn btn-primary">Save</button>
                                                     </div>
                                                 </div>
 
