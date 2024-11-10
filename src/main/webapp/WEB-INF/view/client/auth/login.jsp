@@ -1,96 +1,128 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-            <!DOCTYPE html>
-            <html lang="en">
+<%@page contentType="text/html" pageEncoding="UTF-8" %> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@taglib
+uri="http://www.springframework.org/tags/form" prefix="form" %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <div class="content">
+        <div class="content-notice">
+          <div class="teams">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/vi/e/ef/Logo_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_B%C3%A1ch_Khoa_H%C3%A0_N%E1%BB%99i.svg"
+              alt="HUST"
+            />
+            <span>Nhóm 17</span>
+          </div>
+          <div class="description">
+            <h1>Welcome!</h1>
+            <h2>Đến với trang web quản lý sinh viên</h2>
+            <p>Phần mềm được thực hiện bởi nhóm 17</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-form">
+        <form method="post" action="/login">
+          <h2>Sign In</h2>
+          <div class="userName">
+            <label>Username</label>
+            <input type="text" type="email" name="username" />
+            <i class="fa fa-user"></i>
+          </div>
+          <div class="password">
+            <label>Password</label>
+            <input type="password" name="password" />
+            <i class="fa fa-eye-slash"></i>
+          </div>
+          <div>
+            <input
+              type="hidden"
+              name="${_csrf.parameterName}"
+              value="${_csrf.token}"
+            />
+          </div>
+          <div class="remember-forgot">
+            <div class="remember">
+              <input type="checkbox" />
+              <span>Remember me</span>
+            </div>
+            <div class="forgot">
+              <a href="#">Forgot password?</a>
+            </div>
+          </div>
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+    </div>
+    <input type="hidden" id="loginError" value="${param.error != null}" />
+  </body>
+  <script>
+    // <i class="fa fa-eye" aria-hidden="true"></i>
+    const eye = document.querySelector("form .password .fa");
+    eye.addEventListener("click", () => {
+      if (eye.classList.contains("fa-eye-slash")) {
+        eye.classList.remove("fa-eye-slash");
+        eye.classList.add("fa-eye");
+        document
+          .querySelector("form .password input")
+          .setAttribute("type", "text");
+      } else {
+        eye.classList.remove("fa-eye");
+        eye.classList.add("fa-eye-slash");
+        document
+          .querySelector("form .password input")
+          .setAttribute("type", "password");
+      }
+    });
 
-            <head>
-                <meta charset="utf-8" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <meta name="description" content="" />
-                <meta name="author" content="" />
-                <title>Login - SB Admin</title>
-                <link href="css/styles.css" rel="stylesheet" />
-                <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-            </head>
+    const inputPassword = document.querySelector("form .password input");
+    inputPassword.addEventListener("input", () => {
+      if (inputPassword.value.length > 0) {
+        document.querySelector("form .password").classList.add("typing");
+      } else {
+        document.querySelector("form .password").classList.remove("typing");
+      }
+    });
 
-            <body class="bg-primary">
-                <div id="layoutAuthentication">
-                    <div id="layoutAuthentication_content">
-                        <main>
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-5">
-                                        <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                            <div class="card-header">
-                                                <h3 class="text-center font-weight-light my-4">Login</h3>
-                                            </div>
-                                            <div class="card-body">
-                                                <form method="post" action="/login">
-                                                    <c:if test="${param.error != null}">
-                                                        <div class="my-2" style="color: red;">
-                                                            Invalid email or password.
-                                                        </div>
-                                                    </c:if>
-                                                    <c:if test="${param.logout != null}">
-                                                        <div class="my-2" style="color: green;">
-                                                            Logout success.
-                                                        </div>
-                                                    </c:if>
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" type="email"
-                                                            placeholder="name@example.com" name="username" />
-                                                        <label>Email address</label>
-                                                    </div>
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" type="password"
-                                                            placeholder="Password" name="password" />
-                                                        <label>Password</label>
-                                                    </div>
+    const inputUsername = document.querySelector("form .userName input");
+    inputUsername.addEventListener("input", () => {
+      if (inputUsername.value.length > 0) {
+        document.querySelector("form .userName").classList.add("typing");
+      } else {
+        document.querySelector("form .userName").classList.remove("typing");
+      }
+    });
 
-                                                    <div>
-                                                        <input type="hidden" name="${_csrf.parameterName}"
-                                                            value="${_csrf.token}" />
-                                                    </div>
-
-                                                    <div class="mt-4 mb-0">
-
-                                                        <div class="d-grid">
-                                                            <button class="btn btn-primary btn-block">Login</button>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="card-footer text-center py-3">
-                                                        <div class="small"><a href="#">Forgot password?</a>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </main>
-                    </div>
-                    <div id="layoutAuthentication_footer">
-                        <footer class="py-4 bg-light mt-auto">
-                            <div class="container-fluid px-4">
-                                <div class="d-flex align-items-center justify-content-between small">
-                                    <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                                    <div>
-                                        <a href="#">Privacy Policy</a>
-                                        &middot;
-                                        <a href="#">Terms &amp; Conditions</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </footer>
-                    </div>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-                    crossorigin="anonymous"></script>
-                <script src="/js/scripts.js"></script>
-            </body>
-
-            </html>
+    // const button = document.querySelector("form button");
+    // const loginError = document.querySelector("#loginError").value;
+    // button.addEventListener("click", () => {
+    //   if (loginError === "true") {
+    //     Swal.fire({
+    //       icon: "success",
+    //       title: "Login successful!",
+    //       text: "You have successfully logged in.",
+    //     });
+    //   } else {
+    //     Swal.fire({
+    //       icon: "error",
+    //       title: "Login failed!",
+    //       text: "Incorrect username or password.",
+    //     });
+    //   }
+    // });
+  </script>
+</html>

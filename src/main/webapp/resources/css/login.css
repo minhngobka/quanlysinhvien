@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+:root {
+  --text-color: #e4e4e4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: "Poppins", sans-serif;
+}
+html {
+  box-sizing: border-box;
+}
+
+body {
+  background: url(https://cdn-media.sforum.vn/storage/app/media/wp-content/uploads/2023/12/hinh-nen-vu-tru-72.jpg)
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  backdrop-filter: blur(10px);
+}
+
+.layout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 550px;
+  background: url(https://cdn-media.sforum.vn/storage/app/media/wp-content/uploads/2023/12/hinh-nen-vu-tru-72.jpg)
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.layout .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 58%;
+  background-color: transparent;
+}
+
+.layout .content .content-notice {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  padding: 60px;
+  height: 100%;
+}
+
+.layout .content .content-notice .teams {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.layout .content .content-notice .teams img {
+  object-fit: cover;
+  width: 26px;
+  height: calc(26px * 1.4);
+  background-color: transparent;
+}
+
+.layout .content .content-notice .teams span {
+  color: var(--text-color);
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.layout .content .content-notice .description {
+  color: var(--text-color);
+}
+
+.layout .modal-form {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 42%;
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+}
+
+.layout .modal-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  padding: 30px;
+}
+
+.layout .modal-form form h2 {
+  color: var(--text-color);
+  pointer-events: none;
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 20px 0 30px 0;
+}
+
+.layout .modal-form form .userName,
+.layout .modal-form form .password {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.layout .modal-form form .password {
+  margin-top: 20px;
+}
+
+.layout .modal-form form label {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 20px;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.layout .modal-form form .userName.typing label,
+.layout .modal-form form .password.typing label {
+  top: 0;
+  transform: rotateY(80%);
+  font-size: 14px;
+  border-radius: 20px;
+  color: black;
+  background-color: #fff;
+  padding: 0 8px;
+}
+
+.layout .modal-form form i {
+  position: absolute;
+  color: #fff;
+  right: 10px;
+  margin-left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.layout .modal-form form .password i {
+  cursor: pointer;
+}
+
+.layout .modal-form form input {
+  background: transparent;
+  color: var(--text-color);
+  font-size: 20px;
+  outline: none;
+  border: none;
+  border-bottom: solid 2px var(--text-color);
+  padding: 10px 40px 10px 10px;
+  transition: 0.2s linear;
+}
+
+.layout .modal-form form .userName.typing input,
+.layout .modal-form form .password.typing input {
+  border: 1px solid var(--text-color);
+  border-radius: 3px;
+}
+
+.layout .modal-form form .password:focus-within label,
+.layout .modal-form form .userName:focus-within label {
+  top: 0;
+  transform: rotateY(80%);
+  font-size: 14px;
+  border-radius: 20px;
+  color: black;
+  background-color: #fff;
+  padding: 0 8px;
+}
+
+.layout .modal-form form .password:focus-within input,
+.layout .modal-form form .userName:focus-within input {
+  border: 1px solid var(--text-color);
+  border-radius: 3px;
+}
+
+.layout .modal-form .remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.layout .modal-form .remember-forgot .remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.layout .modal-form .remember-forgot .remember input {
+  cursor: pointer;
+}
+
+.layout .modal-form .remember-forgot .remember span {
+  cursor: default;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.layout .modal-form .remember-forgot .forgot a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 14px;
+}
+
+.layout .modal-form button {
+  background-color: #c4103d;
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: 700;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
