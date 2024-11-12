@@ -14,7 +14,6 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="/css/login.css" />
   </head>
   <body>
@@ -64,65 +63,46 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
               <a href="#">Forgot password?</a>
             </div>
           </div>
-          <button type="submit">Sign In</button>
+          <button>Sign In</button>
         </form>
       </div>
     </div>
     <input type="hidden" id="loginError" value="${param.error != null}" />
+    <script>
+      const eye = document.querySelector("form .password .fa");
+      eye.addEventListener("click", () => {
+        if (eye.classList.contains("fa-eye-slash")) {
+          eye.classList.remove("fa-eye-slash");
+          eye.classList.add("fa-eye");
+          document
+            .querySelector("form .password input")
+            .setAttribute("type", "text");
+        } else {
+          eye.classList.remove("fa-eye");
+          eye.classList.add("fa-eye-slash");
+          document
+            .querySelector("form .password input")
+            .setAttribute("type", "password");
+        }
+      });
+
+      const inputPassword = document.querySelector("form .password input");
+      inputPassword.addEventListener("input", () => {
+        if (inputPassword.value.length > 0) {
+          document.querySelector("form .password").classList.add("typing");
+        } else {
+          document.querySelector("form .password").classList.remove("typing");
+        }
+      });
+
+      const inputUsername = document.querySelector("form .userName input");
+      inputUsername.addEventListener("input", () => {
+        if (inputUsername.value.length > 0) {
+          document.querySelector("form .userName").classList.add("typing");
+        } else {
+          document.querySelector("form .userName").classList.remove("typing");
+        }
+      });
+    </script>
   </body>
-  <script>
-    // <i class="fa fa-eye" aria-hidden="true"></i>
-    const eye = document.querySelector("form .password .fa");
-    eye.addEventListener("click", () => {
-      if (eye.classList.contains("fa-eye-slash")) {
-        eye.classList.remove("fa-eye-slash");
-        eye.classList.add("fa-eye");
-        document
-          .querySelector("form .password input")
-          .setAttribute("type", "text");
-      } else {
-        eye.classList.remove("fa-eye");
-        eye.classList.add("fa-eye-slash");
-        document
-          .querySelector("form .password input")
-          .setAttribute("type", "password");
-      }
-    });
-
-    const inputPassword = document.querySelector("form .password input");
-    inputPassword.addEventListener("input", () => {
-      if (inputPassword.value.length > 0) {
-        document.querySelector("form .password").classList.add("typing");
-      } else {
-        document.querySelector("form .password").classList.remove("typing");
-      }
-    });
-
-    const inputUsername = document.querySelector("form .userName input");
-    inputUsername.addEventListener("input", () => {
-      if (inputUsername.value.length > 0) {
-        document.querySelector("form .userName").classList.add("typing");
-      } else {
-        document.querySelector("form .userName").classList.remove("typing");
-      }
-    });
-
-    // const button = document.querySelector("form button");
-    // const loginError = document.querySelector("#loginError").value;
-    // button.addEventListener("click", () => {
-    //   if (loginError === "true") {
-    //     Swal.fire({
-    //       icon: "success",
-    //       title: "Login successful!",
-    //       text: "You have successfully logged in.",
-    //     });
-    //   } else {
-    //     Swal.fire({
-    //       icon: "error",
-    //       title: "Login failed!",
-    //       text: "Incorrect username or password.",
-    //     });
-    //   }
-    // });
-  </script>
 </html>
