@@ -1,5 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %>
+mmain<%@page contentType="text/html" pageEncoding="UTF-8" %> <%@ taglib
+prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,8 +12,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <meta name="description" content="Quản lý sinh viên" />
     <meta name="author" content="Quản lý sinh viên" />
     <title>Dashboard - Quản lý sinh viên</title>
-    <link href="css/layout.css" rel="stylesheet" />
-    <link href="css/dashboard.admin.css" rel="stylesheet" />
+    <link href="/css/layout.css" rel="stylesheet" />
+    <link href="/css/dashboard.admin.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -26,7 +26,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <body>
     <jsp:include page="../layout/layout.jsp" />
     <div class="container-main">
-      <div id="main">
+      <main>
         <div class="main-header">
           <div class="main-header-title">
             <h2>
@@ -716,8 +716,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </g>
           </svg>
         </div>
-      </div>
+      </main>
     </div>
     <script src="/js/layout.js"></script>
+    <script>
+      document.querySelectorAll(".nav-item")[0].classList.add("active");
+    </script>
   </body>
 </html>

@@ -99,7 +99,7 @@ nav .nav-list .nav-item a {
 }
 
 nav.close .nav-list .nav-item a {
-  gap: 20px;
+  gap: 14px;
 }
 
 nav .nav-list .nav-item a i {
@@ -137,7 +137,7 @@ nav.close .nav-list .nav-item a span::after {
   content: "";
   position: absolute;
   height: 32px;
-  width: 110%;
+  width: 120%;
   background-color: transparent;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -167,7 +167,7 @@ nav.close .nav-item:hover .nav-item-title {
   }
 
   60% {
-    color: #454545;
+    color: red;
   }
   80% {
     color: #b402ae;
@@ -381,13 +381,14 @@ nav.close .nav-bottom button span {
   overflow-y: hidden;
 }
 
-.container-main #main {
+.container-main main {
   height: calc(100vh - 58px);
   background-color: transparent;
   overflow-y: auto;
+  scrollbar-width: none;
 }
 
-nav.close + .container-main {
+nav.close ~ .container-main {
   padding-left: 78px;
 }
 

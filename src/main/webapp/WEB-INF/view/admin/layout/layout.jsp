@@ -6,10 +6,17 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   </div>
   <div class="title-user">
     <img
-      src="https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-512.png"
+      src="<c:choose>
+        <c:when test='${empty teacher.avatar}'>
+          https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-512.png
+        </c:when>
+        <c:otherwise>
+          /images/teacher/${teacher.avatar}
+        </c:otherwise>
+      </c:choose>"
       alt="user"
     />
-    <span>Quách Hải Linh</span>
+    <span><%=session.getAttribute("teacherName")%></span>
     <ul class="title-user-menu">
       <li>
         <a class="header-user-link" href="">Settings</a>
@@ -24,10 +31,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <nav>
   <div class="logo-details">
     <i class="fa-solid fa-globe"></i>
-    <span class="logo_name">student management</span>
+    <span class="logo_name">management</span>
   </div>
   <ul class="nav-list">
-    <li class="nav-item active">
+    <li class="nav-item">
       <a href="/admin">
         <i class="fa-solid fa-gauge"></i>
         <span class="nav-item-title">DashBoard</span>
@@ -37,35 +44,35 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <li class="nav-item">
       <a href="/admin/teacher">
         <i class="fa-solid fa-person-chalkboard"></i>
-        <span class="nav-item-title">teacher</span>
+        <span class="nav-item-title">teachers</span>
       </a>
     </li>
 
     <li class="nav-item">
       <a href="/admin/student">
         <i class="fa-solid fa-graduation-cap"></i>
-        <span class="nav-item-title">student</span>
+        <span class="nav-item-title">students</span>
       </a>
     </li>
 
     <li class="nav-item">
       <a href="/admin/course">
         <i class="fa-solid fa-book"></i>
-        <span class="nav-item-title">subject</span>
+        <span class="nav-item-title">subjects</span>
       </a>
     </li>
 
     <li class="nav-item">
       <a href="/admin/class">
         <i class="fa-solid fa-school"></i>
-        <span class="nav-item-title">class</span>
+        <span class="nav-item-title">classes</span>
       </a>
     </li>
 
     <li class="nav-item">
       <a href="/admin/class-course">
         <i class="fa fa-tachometer" aria-hidden="true"></i>
-        <span class="nav-item-title">class-course</span>
+        <span class="nav-item-title">courses</span>
       </a>
     </li>
   </ul>
