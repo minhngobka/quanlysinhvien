@@ -17,13 +17,23 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import vn.nmcnpm.quanlysinhvien.domain.Student;
+import vn.nmcnpm.quanlysinhvien.domain.Teacher;
 import vn.nmcnpm.quanlysinhvien.domain.User;
+import vn.nmcnpm.quanlysinhvien.service.StudentService;
+import vn.nmcnpm.quanlysinhvien.service.TeacherService;
 import vn.nmcnpm.quanlysinhvien.service.UserService;
 
 public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TeacherService teacherService;
+
+    @Autowired
+    private StudentService studentService;
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
@@ -56,6 +66,15 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         if (user != null) {
             session.setAttribute("id", user.getId());
             session.setAttribute("email", user.getEmail());
+
+            Student currentStudent = this.studentService.getStudentByUser(user);
+            if (currentStudent != null) {
+                session.setAttribute("studentName", currentStudent.getFullName());
+            }
+            Teacher currentTeacher = this.teacherService.getTeacherByUser(user);
+            if (currentTeacher != null) {
+                session.setAttribute("teacherName", currentTeacher.getFullName());
+            }
         }
 
     }

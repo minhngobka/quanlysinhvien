@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import vn.nmcnpm.quanlysinhvien.domain.Student;
+import vn.nmcnpm.quanlysinhvien.domain.User;
 import vn.nmcnpm.quanlysinhvien.repository.StudentRepository;
 import vn.nmcnpm.quanlysinhvien.repository.UserRepository;
 
@@ -37,6 +38,10 @@ public class StudentService {
 
     public Optional<Student> getStudentById(long id) {
         return this.studentRepository.findById(id);
+    }
+
+    public Student getStudentByUser(User user) {
+        return this.studentRepository.findByUser(user);
     }
 
     public void deleteStudentById(long id) {
