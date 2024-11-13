@@ -7,7 +7,7 @@
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Manager Class Courses</title>
+                    <title>Teacher Class Courses</title>
 
                     <link href="/css/styles.css" rel="stylesheet" />
                     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
@@ -21,9 +21,9 @@
                         <div id="layoutSidenav_content">
                             <main>
                                 <div class="container-fluid px-4">
-                                    <h1 class="mt-4">Manager Class Courses</h1>
+                                    <h1 class="mt-4">Teacher Class Courses</h1>
                                     <ol class="breadcrumb mb-4">
-                                        <li class="breadcrumb-item active"> <a href="/admin">Dashboard</a> / Class
+                                        <li class="breadcrumb-item active"> <a href="/teacher">Dashboard</a> / Class
                                             Courses
                                         </li>
                                     </ol>
@@ -33,9 +33,6 @@
                                             <div class="col-12 mx-auto">
                                                 <div class="d-flex justify-content-between">
                                                     <h3>Table class courses</h3>
-                                                    <a href="/admin/class-course/create" class="btn btn-primary">Create
-                                                        a
-                                                        class course</a>
                                                 </div>
                                                 <hr />
                                                 <table class="table table-bordered table-hover">
@@ -60,48 +57,14 @@
                                                                 <td>${classCourse.preiod}</td>
                                                                 <td>${classCourse.semester}</td>
                                                                 <td>
-                                                                    <a href="/admin/class-course/${classCourse.id}"
+                                                                    <a href="/teacher/class-course/${classCourse.id}"
                                                                         class="btn btn-success">View</a>
-                                                                    <a href="/admin/class-course/update/${classCourse.id}"
-                                                                        class="btn btn-warning mx-2">Update</a>
-                                                                    <a href="/admin/class-course/delete/${classCourse.id}"
-                                                                        class="btn btn-danger">Delete</a>
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>
 
                                                     </tbody>
                                                 </table>
-
-                                                <!-- <nav aria-label="Page navigation example">
-                                                    <ul class="pagination justify-content-center">
-                                                        <li class="page-item">
-                                                            <a class="page-link ${1 eq currentPage ? 'disabled' : ''}"
-                                                                href="/admin/product?page=${currentPage-1}"
-                                                                aria-label="Previous">
-                                                                <span aria-hidden="true">&laquo;</span>
-                                                            </a>
-                                                        </li>
-
-                                                        <c:forEach begin="1" end="${totalPages}" varStatus="loop">
-                                                            <li class="page-item">
-                                                                <a class="page-link ${(loop.index) eq currentPage ? 'active' : ''}"
-                                                                    href="/admin/product?page=${loop.index}">
-                                                                    ${loop.index}
-                                                                </a>
-                                                            </li>
-                                                        </c:forEach>
-
-                                                        <li class="page-item">
-                                                            <a class="page-link ${totalPages eq currentPage ? 'disabled' : ''}"
-                                                                href="/admin/product?page=${currentPage+1}"
-                                                                aria-label="Next">
-                                                                <span aria-hidden="true">&raquo;</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </nav> -->
-
                                             </div>
                                         </div>
                                     </div>

@@ -8,11 +8,19 @@
                         <a class="nav-link" href="/teacher">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
-                        </a><a class="nav-link" href="/teacher/infor">
+                        </a>
+                        <a class="nav-link" href="/teacher/infor">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Hồ sơ
                         </a>
-
+                        <a class="nav-link" href="/teacher/class">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Lớp chủ nhiệm
+                        </a>
+                        <a class="nav-link" href="/teacher/class-course">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Lớp dạy môn học
+                        </a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
