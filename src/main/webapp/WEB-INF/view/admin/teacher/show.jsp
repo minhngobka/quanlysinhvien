@@ -8,94 +8,109 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manager Teachers</title>
 
-    <link href="/css/styles.css" rel="stylesheet" />
-    <script
-      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+    <link href="/css/layout.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/teacher.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
       crossorigin="anonymous"
-    ></script>
-
-    <!-- Latest compiled and minified CSS
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-                Latest compiled JavaScript
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+      referrerpolicy="no-referrer"
+    />
   </head>
 
-  <body class="sb-nav-fixed">
-    <jsp:include page="../layout/header.jsp" />
-    <div id="layoutSidenav">
-      <jsp:include page="../layout/sidebar.jsp" />
-      <div id="layoutSidenav_content">
-        <main>
-          <div class="container-fluid px-4">
-            <h1 class="mt-4">Manager Teachers</h1>
-            <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item active">
-                <a href="/admin">Dashboard</a> / Teachers
-              </li>
-            </ol>
+  <body>
+    <jsp:include page="../layout/layout.jsp" />
+    <div class="container-main">
+      <main>
+        <div class="main-header">
+          <div class="main-header-title">
+            <h2>
+              <i class="fa-solid fa-desktop"></i>
+              <span>teacher management</span>
+            </h2>
+            <p>View Teacher</p>
+          </div>
+          <div class="main-header-routing">
+            <i class="fa-solid fa-house"></i>
+            /
+            <a href="/admin">DashBoard</a>
+            / Teacher
+          </div>
+        </div>
 
-            <div class="container mt-5">
-              <div class="row">
-                <div class="col-12 mx-auto">
-                  <div class="d-flex justify-content-between">
-                    <h3>Table teachers</h3>
-                    <a href="/admin/teacher/create" class="btn btn-primary"
-                      >Create a teacher</a
-                    >
+        <div class="main-content">
+          <div class="main-content-wrapper">
+            <div class="main-content-table">
+              <div class="table-header">
+                <h2>Teacher View Board</h2>
+              </div>
+              <div class="table-main">
+                <div class="table-search">
+                  <span>Tìm kiếm danh sách giáo viên:</span>
+                  <div class="table-search-main">
+                    <div class="search">
+                      <input type="text" placeholder="Nhập mã số hoặc tên" />
+                    </div>
+                    <button>
+                      <i class="fa-solid fa-star icon-search"></i>
+                    </button>
                   </div>
-                  <hr />
-                  <table class="table table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Mã giảng viên</th>
-                        <th scope="col">Họ và tên</th>
-                        <th scope="col">Giới tính</th>
-                        <th scope="col">Thao tác</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <c:forEach var="teacher" items="${teachers}">
-                        <tr>
-                          <th scope="row">${teacher.id}</th>
-                          <td>${teacher.teacherId}</td>
-                          <td>${teacher.fullName}</td>
-                          <td>${teacher.gender}</td>
-                          <td>
-                            <a
-                              href="/admin/teacher/${teacher.id}"
-                              class="btn btn-success"
-                              >View</a
-                            >
-                            <a
-                              href="/admin/teacher/update/${teacher.id}"
-                              class="btn btn-warning mx-2"
-                              >Update</a
-                            >
-                            <a
-                              href="/admin/teacher/delete/${teacher.id}"
-                              class="btn btn-danger"
-                              >Delete</a
-                            >
-                          </td>
-                        </tr>
-                      </c:forEach>
-                    </tbody>
-                  </table>
                 </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>name</th>
+                      <th>sex</th>
+                      <th>phone</th>
+                      <th>email</th>
+                      <th>action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <c:forEach var="teacher" items="${teachers}">
+                      <tr>
+                          <th>${teacher.id}</th>
+                          <td>
+                            <img src="<c:choose>
+                                  <c:when test='${empty teacher.avatar}'>
+                                    https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-512.png
+                                  </c:when>
+                                  <c:otherwise>
+                                    /images/teacher/${teacher.avatar}
+                                  </c:otherwise>
+                                </c:choose>"
+                                alt="user"
+                              />
+                            <span>${teacher.fullName}</span></td>
+                          <td>${teacher.gender}</td>
+                          <td>${teacher.phone}</td>
+                          <td>${teacher.address}</td>
+                          <td>
+                            <button><a href="/admin/teacher/${teacher.id}">View</a></button>
+                            <button><a href="/admin/teacher/update/${teacher.id}">Update</a></button>
+                            <button><a href="/admin/teacher/delete/${teacher.id}">Delete</a></button>
+                          </td>
+                      </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-        </main>
-        <jsp:include page="../layout/footer.jsp" />
-      </div>
+        </div>
+        <div id="button-create-teacher">
+          <a href="/admin/teacher/create">
+            <i class="fa-solid fa-plus"></i>
+          </a>
+        </div>
+      </main>
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="/js/scripts.js"></script>
+    <script src="/js/layout.js"></script>
+    <script>
+      document.querySelectorAll(".nav-item")[1].classList.add("active");
+    </script>
+  </body>
   </body>
 </html>
