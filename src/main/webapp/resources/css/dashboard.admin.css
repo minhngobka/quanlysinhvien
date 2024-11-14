@@ -1,0 +1,130 @@
+.container-main main {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-main main .main-header {
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px 0 20px;
+  color: rgb(174, 29, 44);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 3px -2px,
+    rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
+}
+
+.container-main main .main-header .main-header-title i {
+  font-size: 35px;
+}
+
+.container-main main .main-header .main-header-title p {
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  animation: faDin 1s linear infinite;
+}
+
+@keyframes faDin {
+  0% {
+    color: red;
+  }
+  30% {
+    color: blue;
+  }
+  70% {
+    color: yellow;
+  }
+}
+
+.container-main main .main-header .main-header-title a {
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+}
+.container-main main .main-header .main-header-routing a:hover,
+.container-main main .main-header .main-header-title a:hover {
+  text-decoration: underline;
+}
+
+.container-main main .main-header .main-header-routing {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 15px;
+}
+
+.container-main main .main-header .main-header-routing a {
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.container-main main .main-header .main-header-routing i {
+  font-size: 20px;
+}
+
+.container-main main .main-content {
+  flex: 1;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-main main .main-content .grid {
+  padding: 30px 30px 30px 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.container-main main .main-content .grid .grid-item {
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.87);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 3px -2px,
+    rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  border-radius: 8px;
+  height: auto;
+  padding: 16px 16px 16px 16px;
+}
+
+.container-main main .main-content .grid .grid-item a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 10px;
+}
+
+.container-main .grid .grid-item i {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.87);
+  background-color: rgb(13, 45, 128);
+  color: white;
+}
+
+.container-main .grid .grid-item .grid-item-content {
+  margin: 0 auto;
+}
+
+.container-main .grid .grid-item .grid-item-content p {
+  line-height: 2.66;
+  letter-spacing: 0.08333em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 500;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.container-main .grid .grid-item .grid-item-content h3 {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  color: rgb(17, 25, 39);
+}
