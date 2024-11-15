@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
@@ -58,8 +57,8 @@ public class ClassCourse {
     @OneToMany(mappedBy = "classCourse")
     private List<Grade> grades;
 
-    @OneToOne(mappedBy = "classCourse")
-    private CourseRegistration courseRegistration;
+    @OneToMany(mappedBy = "classCourse")
+    private List<CourseRegistration> courseRegistrations;
 
     public long getId() {
         return id;
@@ -117,14 +116,6 @@ public class ClassCourse {
         this.grades = grades;
     }
 
-    public CourseRegistration getCourseRegistration() {
-        return courseRegistration;
-    }
-
-    public void setCourseRegistration(CourseRegistration courseRegistration) {
-        this.courseRegistration = courseRegistration;
-    }
-
     public int getStudentLimit() {
         return studentLimit;
     }
@@ -147,6 +138,14 @@ public class ClassCourse {
 
     public void setWeekday(String weekday) {
         this.weekday = weekday;
+    }
+
+    public List<CourseRegistration> getCourseRegistrations() {
+        return courseRegistrations;
+    }
+
+    public void setCourseRegistrations(List<CourseRegistration> courseRegistrations) {
+        this.courseRegistrations = courseRegistrations;
     }
 
 }
