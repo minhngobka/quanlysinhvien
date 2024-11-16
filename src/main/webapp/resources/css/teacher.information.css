@@ -184,11 +184,19 @@
   height: 100%;
 }
 
-.information-wrapper button {
+.information-wrapper button:nth-child(1) {
   background-color: rgb(73, 82, 142);
   color: #fff;
 }
 
-.information-wrapper button:hover {
+.information-wrapper button:nth-child(1):hover {
   background-color: rgba(56, 69, 157, 0.8);
+}
+
+.information-wrapper button:nth-child(2) {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.information-wrapper button:nth-child(2):hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }

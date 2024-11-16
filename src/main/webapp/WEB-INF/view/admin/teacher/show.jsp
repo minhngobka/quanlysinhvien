@@ -71,9 +71,10 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
                   <tbody>
                     <c:forEach var="teacher" items="${teachers}">
                       <tr>
-                          <th>${teacher.id}</th>
-                          <td>
-                            <img src="<c:choose>
+                        <th>${teacher.id}</th>
+                        <td>
+                          <img
+                            src="<c:choose>
                                   <c:when test='${empty teacher.avatar}'>
                                     https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-512.png
                                   </c:when>
@@ -81,17 +82,28 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
                                     /images/teacher/${teacher.avatar}
                                   </c:otherwise>
                                 </c:choose>"
-                                alt="user"
-                              />
-                            <span>${teacher.fullName}</span></td>
-                          <td>${teacher.gender}</td>
-                          <td>${teacher.phone}</td>
-                          <td>${teacher.address}</td>
-                          <td>
-                            <button><a href="/admin/teacher/${teacher.id}">View</a></button>
-                            <button><a href="/admin/teacher/update/${teacher.id}">Update</a></button>
-                            <button><a href="/admin/teacher/delete/${teacher.id}">Delete</a></button>
-                          </td>
+                            alt="user"
+                          />
+                          <span>${teacher.fullName}</span>
+                        </td>
+                        <td>${teacher.gender}</td>
+                        <td>${teacher.phone}</td>
+                        <td>${teacher.user.email}</td>
+                        <td>
+                          <button>
+                            <a href="/admin/teacher/${teacher.id}">View</a>
+                          </button>
+                          <button>
+                            <a href="/admin/teacher/update/${teacher.id}"
+                              >Update</a
+                            >
+                          </button>
+                          <button>
+                            <a href="/admin/teacher/delete/${teacher.id}"
+                              >Delete</a
+                            >
+                          </button>
+                        </td>
                       </tr>
                     </c:forEach>
                   </tbody>
@@ -111,6 +123,5 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <script>
       document.querySelectorAll(".nav-item")[1].classList.add("active");
     </script>
-  </body>
   </body>
 </html>

@@ -70,10 +70,12 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
             Student currentStudent = this.studentService.getStudentByUser(user);
             if (currentStudent != null) {
                 session.setAttribute("studentName", currentStudent.getFullName());
+                session.setAttribute("avatar", currentStudent.getAvatar());
             }
             Teacher currentTeacher = this.teacherService.getTeacherByUser(user);
             if (currentTeacher != null) {
                 session.setAttribute("teacherName", currentTeacher.getFullName());
+                session.setAttribute("avatar", currentTeacher.getAvatar());
             }
         }
 

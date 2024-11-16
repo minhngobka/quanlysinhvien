@@ -85,6 +85,9 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                   </li>
                 </div>
                 <div class="information-button">
+                  <button>
+                    <a href="/admin/teacher/update/${teacher.id}">Update</a>
+                  </button>
                   <button><a href="/admin/teacher">Cancel</a></button>
                 </div>
               </div>

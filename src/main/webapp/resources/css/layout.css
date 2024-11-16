@@ -368,6 +368,7 @@ nav.close .nav-bottom button span {
   font-weight: 500;
   font-size: 14px;
   color: var(--text-color);
+  white-space: nowrap;
 }
 
 .container-main {

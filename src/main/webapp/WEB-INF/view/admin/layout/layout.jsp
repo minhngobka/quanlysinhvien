@@ -5,17 +5,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <i class="fa-solid fa-bars"></i>
   </div>
   <div class="title-user">
-    <img
-      src="<c:choose>
-        <c:when test='${empty teacher.avatar}'>
-          https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-512.png
-        </c:when>
-        <c:otherwise>
-          /images/teacher/${teacher.avatar}
-        </c:otherwise>
-      </c:choose>"
-      alt="user"
-    />
+    <img src="<c:choose>
+      <c:when test="${empty sessionScope.avatar}">
+        https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-512.png
+      </c:when>
+      <c:otherwise>
+        /images/teacher/${sessionScope.avatar}
+      </c:otherwise> </c:choose
+    >" alt="user" />
     <span><%=session.getAttribute("teacherName")%></span>
     <ul class="title-user-menu">
       <li>
