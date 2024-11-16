@@ -1,33 +1,45 @@
 package vn.nmcnpm.quanlysinhvien.controller.client.teacher;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import vn.nmcnpm.quanlysinhvien.domain.ClassCourse;
 import vn.nmcnpm.quanlysinhvien.domain.CourseRegistration;
+import vn.nmcnpm.quanlysinhvien.domain.Grade;
+import vn.nmcnpm.quanlysinhvien.domain.Student;
 import vn.nmcnpm.quanlysinhvien.domain.Teacher;
 import vn.nmcnpm.quanlysinhvien.domain.User;
 import vn.nmcnpm.quanlysinhvien.service.ClassCourseService;
+import vn.nmcnpm.quanlysinhvien.service.GradeService;
+import vn.nmcnpm.quanlysinhvien.service.StudentService;
 import vn.nmcnpm.quanlysinhvien.service.TeacherService;
 import vn.nmcnpm.quanlysinhvien.service.UserService;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class TeacherClassCourseController {
     private final TeacherService teacherService;
     private final UserService userService;
     private final ClassCourseService classCourseService;
+    private final StudentService studentService;
+    private final GradeService gradeService;
 
     public TeacherClassCourseController(TeacherService teacherService, UserService userService,
-            ClassCourseService classCourseService) {
+            ClassCourseService classCourseService, StudentService studentService, GradeService gradeService) {
         this.teacherService = teacherService;
         this.userService = userService;
         this.classCourseService = classCourseService;
+        this.studentService = studentService;
+        this.gradeService = gradeService;
     }
 
     @GetMapping("/teacher/class-course")
@@ -49,5 +61,64 @@ public class TeacherClassCourseController {
         List<CourseRegistration> courseRegistrations = classCourse.getCourseRegistrations();
         model.addAttribute("courseRegistrations", courseRegistrations);
         return "client/teacher/classcourse/detail";
+    }
+
+    @GetMapping("/teacher/class-course/{classCourseId}/{studentId}")
+    public String getTeacherStudentPage(Model model,
+            @PathVariable long classCourseId,
+            @PathVariable long studentId) {
+        Student currentStudent = this.studentService.getStudentById(studentId).get();
+        ClassCourse currentClassCourse = this.classCourseService.getClassCourseById(classCourseId).get();
+        List<Grade> grades = currentStudent.getGrades();
+
+        if (grades != null) {
+            int flag = 0;
+            for (Grade grade : grades) {
+                if (grade.getClassCourse() != null && grade.getClassCourse().getId() == classCourseId) {
+                    model.addAttribute("newGrade", grade);
+                    break;
+                }
+                flag++;
+            }
+            if (flag == grades.size()) {
+                Grade grade = new Grade();
+                grade.setClassCourse(currentClassCourse);
+                grade.setStudent(currentStudent);
+                this.gradeService.handleSaveGrade(grade);
+                model.addAttribute("newGrade", grade);
+            }
+        } else {
+            Grade grade = new Grade();
+            grade.setClassCourse(currentClassCourse);
+            grade.setStudent(currentStudent);
+            this.gradeService.handleSaveGrade(grade);
+            model.addAttribute("newGrade", grade);
+        }
+
+        return "client/teacher/classcourse/studentdetail";
+    }
+
+    @PostMapping("/teacher/class-course/{classCourseId}/{studentId}")
+    public String postTeacherStudentPage(Model model,
+            @ModelAttribute("newGrade") Grade grade,
+            @PathVariable long classCourseId,
+            @PathVariable long studentId) {
+
+        Grade currentGrade = this.gradeService.getGradeById(grade.getId()).get();
+
+        currentGrade.setClassCourse(this.classCourseService.getClassCourseById(classCourseId).get());
+        currentGrade.setStudent(this.studentService.getStudentById(studentId).get());
+        String coefficient = currentGrade.getClassCourse().getCourse().getCoefficient();
+        List<Double> coefficientList = Arrays.stream(coefficient.split("-"))
+                .map(Double::valueOf)
+                .collect(Collectors.toList());
+
+        double totalSorce = grade.getMidtermSorce() * coefficientList.get(0)
+                + grade.getFinalSorce() * coefficientList.get(1);
+        currentGrade.setMidtermSorce(grade.getMidtermSorce());
+        currentGrade.setFinalSorce(grade.getFinalSorce());
+        currentGrade.setTotalSorce((double) Math.round(totalSorce * 10) / 10);
+        this.gradeService.handleSaveGrade(currentGrade);
+        return "redirect:/teacher/class-course/{classCourseId}/{studentId}";
     }
 }

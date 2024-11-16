@@ -44,6 +44,7 @@
                                                             <th scope="col">Số điên thoại</th>
                                                             <th scope="col">Giới tính</th>
                                                             <th scope="col">Địa chỉ</th>
+                                                            <th scope="col">Thao tác</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -56,6 +57,10 @@
                                                                 <td>${courseRegistration.student.phone}</td>
                                                                 <td>${courseRegistration.student.gender}</td>
                                                                 <td>${courseRegistration.student.address}</td>
+                                                                <td>
+                                                                    <a href="/teacher/class-course/${courseRegistration.classCourse.id}/${courseRegistration.student.id}"
+                                                                        class="btn btn-success">View</a>
+                                                                </td>
                                                             </tr>
                                                         </c:forEach>
 
