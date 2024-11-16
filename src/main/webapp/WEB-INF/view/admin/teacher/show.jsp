@@ -9,7 +9,7 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <title>Manager Teachers</title>
 
     <link href="/css/layout.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/teacher.css" />
+    <link rel="stylesheet" href="/css/admin/list.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -60,7 +60,7 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
                 <table>
                   <thead>
                     <tr>
-                      <th>id</th>
+                      <th>mssv</th>
                       <th>name</th>
                       <th>sex</th>
                       <th>phone</th>
@@ -71,7 +71,7 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
                   <tbody>
                     <c:forEach var="teacher" items="${teachers}">
                       <tr>
-                        <th>${teacher.id}</th>
+                        <th>${teacher.teacherId}</th>
                         <td>
                           <img
                             src="<c:choose>

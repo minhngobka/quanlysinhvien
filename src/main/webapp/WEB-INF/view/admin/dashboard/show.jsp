@@ -13,7 +13,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <meta name="author" content="Quản lý sinh viên" />
     <title>Dashboard - Quản lý sinh viên</title>
     <link href="/css/layout.css" rel="stylesheet" />
-    <link href="/css/dashboard.admin.css" rel="stylesheet" />
+    <link href="/css/admin/dashboard.admin.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"

@@ -9,7 +9,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
     <title>Teacher Information</title>
 
     <link href="/css/layout.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/teacher.information.css" />
+    <link rel="stylesheet" href="/css/admin/information.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
