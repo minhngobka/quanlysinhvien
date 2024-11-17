@@ -1,82 +1,95 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@taglib
+uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-            <html lang="en">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Course Information</title>
 
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Class Course Information</title>
+    <link href="/css/layout.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/admin/information.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-                <link href="/css/styles.css" rel="stylesheet" />
-                <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
-                <!-- Latest compiled and minified CSS
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-                Latest compiled JavaScript
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
-            </head>
-
-            <body class="sb-nav-fixed">
-                <jsp:include page="../layout/header.jsp" />
-                <div id="layoutSidenav">
-                    <jsp:include page="../layout/sidebar.jsp" />
-                    <div id="layoutSidenav_content">
-                        <main>
-                            <div class="container-fluid px-4">
-                                <h1 class="mt-4">Class Course information</h1>
-                                <ol class="breadcrumb mb-4">
-                                    <li class="breadcrumb-item active"> <a href="/admin">Dashboard</a> / <a
-                                            href="/admin/class-course">Class Courses</a> / Information</li>
-                                </ol>
-
-                                <div class="container mt-5">
-                                    <div class="row">
-                                        <div class="col-12 mx-auto">
-                                            <div class="d-flex justify-content-between">
-                                                <h3>Thông tin lớp môn học</h3>
-
-                                            </div>
-                                            <hr />
-                                            <div class="card" style="width: 60%">
-                                                <div class="card-header">
-                                                    Class Course information
-                                                </div>
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Mã lớp học: ${classCourse.classCourseId}
-                                                    </li>
-                                                    <li class="list-group-item">Tên môn học: ${classCourse.course.name}
-                                                    </li>
-                                                    <li class="list-group-item">Học kỳ: ${classCourse.semester}</li>
-                                                    <li class="list-group-item">Giảng viên:
-                                                        ${classCourse.teacher.fullName}
-                                                    </li>
-                                                    <li class="list-group-item">Phòng học: ${classCourse.classroom}</li>
-                                                    <li class="list-group-item">Thứ: ${classCourse.weekday}</li>
-                                                    <li class="list-group-item">Tiết: ${classCourse.preiod}</li>
-                                                    <li class="list-group-item">Giới hạn: ${classCourse.studentLimit}
-                                                        sinh viên
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                            <a href="/admin/class-course" class="mt-3 btn btn-success">Back</a>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </main>
-                        <jsp:include page="../layout/footer.jsp" />
-                    </div>
+  <body>
+    <jsp:include page="../layout/layout.jsp" />
+    <div class="container-main">
+      <main>
+        <div class="main-header">
+          <div class="main-header-title">
+            <h2>
+              <i class="fa-solid fa-desktop"></i>
+              <span>class course information</span>
+            </h2>
+            <p>View class course</p>
+          </div>
+          <div class="main-header-routing">
+            <i class="fa-solid fa-house"></i>
+            /
+            <a href="/admin">DashBoard</a>
+            / <a href="/admin/class-course">ClassCourse</a>
+            / Information
+          </div>
+        </div>
+        <div class="main-content">
+          <div class="main-content-information">
+            <div class="information-detail">
+              <div class="information-wrapper">
+                <h2>Thông tin lớp môn học</h2>
+                <div class="grid">
+                  <li>
+                    <span>Mã lớp học</span>
+                    <div>${classCourse.classCourseId}</div>
+                  </li>
+                  <li>
+                    <span>Tên môn học</span>
+                    <div>${classCourse.course.name}</div>
+                  </li>
+                  <li>
+                    <span>Học kỳ</span>
+                    <div>${classCourse.semester}</div>
+                  </li>
+                  <li>
+                    <span>Giảng viên</span>
+                    <div>${classCourse.teacher.fullName}</div>
+                  </li>
+                  <li>
+                    <span>Phòng học</span>
+                    <div>${classCourse.classroom}</div>
+                  </li>
+                  <li>
+                    <span>Thứ</span>
+                    <div>${classCourse.weekday}</div>
+                  </li>
+                  <li>
+                    <span>Tiết</span>
+                    <div>${classCourse.preiod}</div>
+                  </li>
+                  <li>
+                    <span>Giới hạn số sinh viên</span>
+                    <div>${classCourse.studentLimit}</div>
+                  </li>
                 </div>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-                    crossorigin="anonymous"></script>
-                <script src="/js/scripts.js"></script>
-            </body>
-
-            </html>
+                <div class="information-button">
+                  <button><a href="/admin/class-course">Cancel</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="/js/layout.js"></script>
+    <script>
+      document.querySelectorAll(".nav-item")[5].classList.add("active");
+    </script>
+  </body>
+</html>

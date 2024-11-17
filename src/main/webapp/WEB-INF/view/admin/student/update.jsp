@@ -139,24 +139,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
     </div>
     <script src="/js/layout.js"></script>
     <script>
-      document.querySelectorAll(".nav-item")[1].classList.add("active");
-    </script>
-    <script>
-      const avatarFile = document.getElementById("avatarFile");
-      const avatarPreview = document.getElementById("avatarPreview");
-
-      avatarFile.addEventListener("change", function () {
-        const file = this.files[0];
-        console.log(file);
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function () {
-            avatarPreview.src = reader.result;
-            avatarPreview.style.display = "block";
-          };
-          reader.readAsDataURL(file);
-        }
-      });
+      document.querySelectorAll(".nav-item")[4].classList.add("active");
     </script>
   </body>
 </html>

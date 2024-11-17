@@ -144,6 +144,13 @@
   margin-bottom: 10px;
 }
 
+.col-md-8 {
+  display: flex;
+  flex-direction: column;
+  width: 66.666667%;
+  margin-bottom: 10px;
+}
+
 .col-md-2 {
   display: flex;
   flex-direction: column;

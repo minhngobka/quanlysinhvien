@@ -29,7 +29,7 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
               <i class="fa-solid fa-book-bookmark"></i>
               <span>subject management</span>
             </h2>
-            <p>View subject</p>
+            <p>View Subject</p>
           </div>
           <div class="main-header-routing">
             <i class="fa-solid fa-house"></i>
