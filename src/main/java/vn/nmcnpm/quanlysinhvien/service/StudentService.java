@@ -36,6 +36,19 @@ public class StudentService {
         return this.studentRepository.findAll();
     }
 
+    public List<Student> getAllStudentsByStudentIdOrFullName(String query) {
+        if (query == null || query == "") {
+            return this.studentRepository.findAll();
+        }
+
+        try {
+            Integer.parseInt(query);
+            return this.studentRepository.findByStudentIdContaining(query);
+        } catch (NumberFormatException e) {
+            return this.studentRepository.findByFullNameContaining(query);
+        }
+    }
+
     public Optional<Student> getStudentById(long id) {
         return this.studentRepository.findById(id);
     }

@@ -21,6 +21,14 @@ public class CourseService {
         return this.courseRepository.findAll();
     }
 
+    public List<Course> getAllCoursesByCourseId(String query) {
+        if (query == null || query == "") {
+            return this.courseRepository.findAll();
+        }
+
+        return this.courseRepository.findByCourseIdContaining(query);
+    }
+
     public void handleSaveCourse(Course course) {
         this.courseRepository.save(course);
     }

@@ -21,6 +21,14 @@ public class ClasseService {
         return this.classeRepository.findAll();
     }
 
+    public List<Classe> getAllClassesByClassId(String query) {
+        if (query == null || query == "") {
+            return this.classeRepository.findAll();
+        }
+
+        return this.classeRepository.findByClassIdContaining(query);
+    }
+
     public Optional<Classe> getClasseById(long id) {
         return this.classeRepository.findById(id);
     }
@@ -33,4 +41,7 @@ public class ClasseService {
         this.classeRepository.deleteById(id);
     }
 
+    public long countClasses() {
+        return this.classeRepository.count();
+    }
 }

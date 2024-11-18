@@ -25,6 +25,14 @@ public class TeacherService {
         return this.teacherRepository.findAll();
     }
 
+    public List<Teacher> getAllTeachersByFullName(String query) {
+        if (query == null || query == "")
+            return this.teacherRepository.findAll();
+
+        return this.teacherRepository.findByFullNameContaining(query);
+
+    }
+
     public Optional<Teacher> getTeacherById(long id) {
         return this.teacherRepository.findById(id);
     }

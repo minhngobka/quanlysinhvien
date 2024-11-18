@@ -38,8 +38,9 @@ public class TeacherController {
     }
 
     @GetMapping("/admin/teacher")
-    public String getTeacherPage(Model model) {
-        List<Teacher> teachers = this.teacherService.getAllTeachers();
+    public String getTeacherPage(Model model,
+            @RequestParam(name = "query", required = false) String query) {
+        List<Teacher> teachers = this.teacherService.getAllTeachersByFullName(query);
         model.addAttribute("teachers", teachers);
         return "admin/teacher/show";
     }

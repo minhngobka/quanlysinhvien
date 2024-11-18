@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 import vn.nmcnpm.quanlysinhvien.domain.ClassCourse;
@@ -33,8 +34,9 @@ public class ClassCourseController {
     }
 
     @GetMapping("/admin/class-course")
-    public String getClassCoursePage(Model model) {
-        List<ClassCourse> classCourses = this.classCourseService.getAllClassCourses();
+    public String getClassCoursePage(Model model,
+            @RequestParam(name = "query", required = false) String query) {
+        List<ClassCourse> classCourses = this.classCourseService.getAllClassCoursesByClassCourseIdOrName(query);
         model.addAttribute("classCourses", classCourses);
         return "admin/classcourse/show";
     }

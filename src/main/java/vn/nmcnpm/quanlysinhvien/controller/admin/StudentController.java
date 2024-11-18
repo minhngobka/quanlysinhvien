@@ -44,8 +44,9 @@ public class StudentController {
     }
 
     @GetMapping("/admin/student")
-    public String getStudentPage(Model model) {
-        List<Student> students = this.studentService.getAllStudents();
+    public String getStudentPage(Model model,
+            @RequestParam(name = "query", required = false) String query) {
+        List<Student> students = this.studentService.getAllStudentsByStudentIdOrFullName(query);
         model.addAttribute("students", students);
         return "admin/student/show";
     }

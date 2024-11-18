@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 import vn.nmcnpm.quanlysinhvien.domain.Classe;
@@ -31,8 +32,9 @@ public class ClasseController {
     }
 
     @GetMapping("/admin/class")
-    public String getClassPage(Model model) {
-        List<Classe> classes = this.classeService.getAllClasses();
+    public String getClassPage(Model model,
+            @RequestParam(name = "query", required = false) String query) {
+        List<Classe> classes = this.classeService.getAllClassesByClassId(query);
 
         model.addAttribute("classes", classes);
         return "admin/class/show";
