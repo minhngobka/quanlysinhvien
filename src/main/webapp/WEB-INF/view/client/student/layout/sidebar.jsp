@@ -17,6 +17,10 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Lớp sinh viên
                         </a>
+                        <a class="nav-link" href="/student/grade">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Kết quả học tập
+                        </a>
                         <a class="nav-link" href="/student/course-registration">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Đăng ký môn học
