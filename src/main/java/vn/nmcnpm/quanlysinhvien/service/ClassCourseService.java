@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import vn.nmcnpm.quanlysinhvien.domain.ClassCourse;
 import vn.nmcnpm.quanlysinhvien.domain.Course;
+import vn.nmcnpm.quanlysinhvien.domain.Teacher;
 import vn.nmcnpm.quanlysinhvien.repository.ClassCourseRepository;
 import vn.nmcnpm.quanlysinhvien.repository.CourseRepository;
 
@@ -44,6 +45,14 @@ public class ClassCourseService {
         }
     }
 
+    public List<ClassCourse> getAllClassCoursesByTeacherAndSemester(String query, Teacher teacher) {
+        if (query == null || query == "") {
+            return teacher.getClassCourses();
+        }
+
+        return this.classCourseRepository.findByTeacherAndSemesterContaining(teacher, query);
+    }
+
     public Optional<ClassCourse> getClassCourseById(long id) {
         return this.classCourseRepository.findById(id);
     }
@@ -58,6 +67,10 @@ public class ClassCourseService {
 
     public long countClassCourses() {
         return this.classCourseRepository.count();
+    }
+
+    public long countClassCoursesByTeacher(Teacher teacher) {
+        return this.classCourseRepository.countByTeacher(teacher);
     }
 
 }

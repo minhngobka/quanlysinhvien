@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -32,14 +33,15 @@ public class TeacherClassController {
     }
 
     @GetMapping("/teacher/class")
-    public String getTeacherClassPage(Model model, HttpServletRequest request) {
+    public String getTeacherClassPage(Model model, HttpServletRequest request,
+            @RequestParam(name = "query", required = false) String query) {
         HttpSession session = request.getSession(false);
 
         long id = (long) session.getAttribute("id");
         User currentUser = this.userService.getUserById(id).get();
         Teacher currentTeacher = this.teacherService.getTeacherByUser(currentUser);
 
-        List<Classe> classes = currentTeacher.getClasses();
+        List<Classe> classes = this.classeService.getAllClassesByTeacherAndClassId(currentTeacher, query);
 
         model.addAttribute("classes", classes);
         return "client/teacher/class/show";

@@ -19,11 +19,13 @@ import vn.nmcnpm.quanlysinhvien.domain.Student;
 import vn.nmcnpm.quanlysinhvien.domain.Teacher;
 import vn.nmcnpm.quanlysinhvien.domain.User;
 import vn.nmcnpm.quanlysinhvien.service.ClassCourseService;
+import vn.nmcnpm.quanlysinhvien.service.CourseRegistrationService;
 import vn.nmcnpm.quanlysinhvien.service.GradeService;
 import vn.nmcnpm.quanlysinhvien.service.StudentService;
 import vn.nmcnpm.quanlysinhvien.service.TeacherService;
 import vn.nmcnpm.quanlysinhvien.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TeacherClassCourseController {
@@ -32,33 +34,40 @@ public class TeacherClassCourseController {
     private final ClassCourseService classCourseService;
     private final StudentService studentService;
     private final GradeService gradeService;
+    private final CourseRegistrationService courseRegistrationService;
 
     public TeacherClassCourseController(TeacherService teacherService, UserService userService,
-            ClassCourseService classCourseService, StudentService studentService, GradeService gradeService) {
+            ClassCourseService classCourseService, StudentService studentService, GradeService gradeService,
+            CourseRegistrationService courseRegistrationService) {
         this.teacherService = teacherService;
         this.userService = userService;
         this.classCourseService = classCourseService;
         this.studentService = studentService;
         this.gradeService = gradeService;
+        this.courseRegistrationService = courseRegistrationService;
     }
 
     @GetMapping("/teacher/class-course")
-    public String getTeacherClassCoursePage(Model model, HttpServletRequest request) {
+    public String getTeacherClassCoursePage(Model model, HttpServletRequest request,
+            @RequestParam(name = "query", required = false) String query) {
         HttpSession session = request.getSession(false);
 
         long id = (long) session.getAttribute("id");
         User currentUser = this.userService.getUserById(id).get();
         Teacher currentTeacher = this.teacherService.getTeacherByUser(currentUser);
 
-        List<ClassCourse> classCourses = currentTeacher.getClassCourses();
+        List<ClassCourse> classCourses = this.classCourseService.getAllClassCoursesByTeacherAndSemester(query,
+                currentTeacher);
         model.addAttribute("classCourses", classCourses);
         return "client/teacher/classcourse/show";
     }
 
     @GetMapping("/teacher/class-course/{id}")
-    public String getTeacherClassCourseDetailPage(Model model, @PathVariable long id) {
+    public String getTeacherClassCourseDetailPage(Model model, @PathVariable long id,
+            @RequestParam(name = "query", required = false) String query) {
         ClassCourse classCourse = this.classCourseService.getClassCourseById(id).get();
-        List<CourseRegistration> courseRegistrations = classCourse.getCourseRegistrations();
+        List<CourseRegistration> courseRegistrations = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentIdOrStudentName(classCourse, query);
         model.addAttribute("courseRegistrations", courseRegistrations);
         return "client/teacher/classcourse/detail";
     }

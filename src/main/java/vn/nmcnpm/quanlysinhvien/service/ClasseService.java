@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import vn.nmcnpm.quanlysinhvien.domain.Classe;
+import vn.nmcnpm.quanlysinhvien.domain.Teacher;
 import vn.nmcnpm.quanlysinhvien.repository.ClasseRepository;
 
 @Service
@@ -29,6 +30,14 @@ public class ClasseService {
         return this.classeRepository.findByClassIdContaining(query);
     }
 
+    public List<Classe> getAllClassesByTeacherAndClassId(Teacher teacher, String query) {
+        if (query == null || query == "") {
+            return teacher.getClasses();
+        }
+
+        return this.classeRepository.findByTeacherAndClassIdContaining(teacher, query);
+    }
+
     public Optional<Classe> getClasseById(long id) {
         return this.classeRepository.findById(id);
     }
@@ -43,5 +52,9 @@ public class ClasseService {
 
     public long countClasses() {
         return this.classeRepository.count();
+    }
+
+    public long countClassesByTeacher(Teacher teacher) {
+        return this.classeRepository.countByTeacher(teacher);
     }
 }
