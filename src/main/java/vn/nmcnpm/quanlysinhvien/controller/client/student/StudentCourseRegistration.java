@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -56,7 +57,7 @@ public class StudentCourseRegistration {
     }
 
     // Đăng ký môn học
-    @GetMapping("/student/course-registration/{id}")
+    @PostMapping("/student/course-registration/{id}")
     public String postStudentCourseRegistration(Model model, @PathVariable long id, HttpServletRequest request) {
 
         HttpSession session = request.getSession(false);
@@ -70,7 +71,8 @@ public class StudentCourseRegistration {
         if (courseRegistrations != null) {
             int flag = 0;
             for (CourseRegistration courseRegistration : courseRegistrations) {
-                if (courseRegistration.getClassCourse().getCourse().getId() == currentClassCourse.getCourse().getId()) {
+                if (courseRegistration.getClassCourse().getCourse().getId() == currentClassCourse.getCourse().getId()
+                        && courseRegistration.getClassCourse().getSemester().equals(currentClassCourse.getSemester())) {
                     return "redirect:/student/course-registration";
                 }
                 flag++;
@@ -88,6 +90,25 @@ public class StudentCourseRegistration {
                 this.gradeService.handleSaveGrade(grade);
             }
         }
+
+        return "redirect:/student/course-registration";
+    }
+
+    // Hủy đăng ký môn học
+    @GetMapping("/student/course-registration/{id}")
+    public String deleteStudentCourseRegistration(Model model, @PathVariable long id) {
+
+        CourseRegistration currentCourseRegistration = this.courseRegistrationService.getCourseRegistrationById(id)
+                .get();
+        Student currentStudent = currentCourseRegistration.getStudent();
+        List<Grade> grades = currentStudent.getGrades();
+        for (Grade grade : grades) {
+            if (grade.getClassCourse().getId() == currentCourseRegistration.getClassCourse().getId()) {
+                this.gradeService.deleteGradeById(grade.getId());
+                break;
+            }
+        }
+        this.courseRegistrationService.deleteCourseRegistrationById(id);
 
         return "redirect:/student/course-registration";
     }

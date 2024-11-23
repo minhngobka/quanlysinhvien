@@ -2,6 +2,7 @@ package vn.nmcnpm.quanlysinhvien.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -48,7 +49,15 @@ public class CourseRegistrationService {
         return currentCourseRegistrations;
     }
 
+    public Optional<CourseRegistration> getCourseRegistrationById(long id) {
+        return this.courseRegistrationRepository.findById(id);
+    }
+
     public void handleSaveCourseRegistration(CourseRegistration courseRegistration) {
         this.courseRegistrationRepository.save(courseRegistration);
+    }
+
+    public void deleteCourseRegistrationById(long id) {
+        this.courseRegistrationRepository.deleteById(id);
     }
 }

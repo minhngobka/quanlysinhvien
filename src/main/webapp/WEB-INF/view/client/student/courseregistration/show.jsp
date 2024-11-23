@@ -43,8 +43,10 @@
                                                             <th scope="col">Phòng học</th>
                                                             <th scope="col">Giới hạn</th>
                                                             <th scope="col">Tiết học</th>
+                                                            <th scope="col">Thứ</th>
                                                             <th scope="col">Học kỳ</th>
                                                             <th scope="col">Trạng thái</th>
+                                                            <th scope="col">Thao tác</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -56,8 +58,14 @@
                                                                 <td>${courseRegistration.classCourse.classroom}</td>
                                                                 <td>${courseRegistration.classCourse.studentLimit}</td>
                                                                 <td>${courseRegistration.classCourse.preiod}</td>
+                                                                <td>${courseRegistration.classCourse.weekday}</td>
                                                                 <td>${courseRegistration.classCourse.semester}</td>
                                                                 <td>${courseRegistration.status}</td>
+                                                                <td>
+
+                                                                    <a href="/student/course-registration/${courseRegistration.id}"
+                                                                        class="btn btn-danger">Hủy</a>
+                                                                </td>
                                                             </tr>
                                                         </c:forEach>
 
@@ -82,6 +90,7 @@
                                                             <th scope="col">Phòng học</th>
                                                             <th scope="col">Giới hạn</th>
                                                             <th scope="col">Tiết học</th>
+                                                            <th scope="col">Thứ</th>
                                                             <th scope="col">Học kỳ</th>
                                                             <th scope="col">Thao tác</th>
                                                         </tr>
@@ -94,10 +103,16 @@
                                                                 <td>${classCourse.classroom}</td>
                                                                 <td>${classCourse.studentLimit}</td>
                                                                 <td>${classCourse.preiod}</td>
+                                                                <td>${classCourse.weekday}</td>
                                                                 <td>${classCourse.semester}</td>
                                                                 <td>
-                                                                    <a href="/student/course-registration/${classCourse.id}"
-                                                                        class="btn btn-success">Đăng ký</a>
+                                                                    <form method="post"
+                                                                        action="/student/course-registration/${classCourse.id}">
+                                                                        <input type="hidden"
+                                                                            name="${_csrf.parameterName}"
+                                                                            value="${_csrf.token}" />
+                                                                        <button class="btn btn-success">Đăng ký</button>
+                                                                    </form>
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>

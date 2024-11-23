@@ -23,4 +23,8 @@ public class GradeService {
     public void handleSaveGrade(Grade grade) {
         this.gradeReposity.save(grade);
     }
+
+    public void deleteGradeById(long id) {
+        this.gradeReposity.deleteById(id);
+    }
 }
