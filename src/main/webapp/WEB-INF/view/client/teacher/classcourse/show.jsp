@@ -59,8 +59,8 @@
                             <th>Mã lớp học</th>
                             <th>Tên môn học</th>
                             <th>Phòng học</th>
-                            <th>Giới hạn</th>
                             <th>Tiết học</th>
+                            <th>Thứ</th>
                             <th>Học kỳ</th>
                             <th>action</th>
                           </tr>
@@ -71,8 +71,8 @@
                               <th scope="row">${classCourse.classCourseId}</th>
                               <td>${classCourse.course.name}</td>
                               <td>${classCourse.classroom}</td>
-                              <td>${classCourse.studentLimit}</td>
                               <td>${classCourse.preiod}</td>
+                              <td>${classCourse.weekday}</td>
                               <td>${classCourse.semester}</td>
                               <td>
                                 <button>

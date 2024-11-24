@@ -25,6 +25,10 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Đăng ký môn học
                         </a>
+                        <a class="nav-link" href="/student/timetable">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Thời khóa biểu
+                        </a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
