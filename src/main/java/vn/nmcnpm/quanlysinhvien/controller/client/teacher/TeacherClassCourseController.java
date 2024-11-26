@@ -1,6 +1,8 @@
 package vn.nmcnpm.quanlysinhvien.controller.client.teacher;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,31 +80,9 @@ public class TeacherClassCourseController {
             @PathVariable long studentId) {
         Student currentStudent = this.studentService.getStudentById(studentId).get();
         ClassCourse currentClassCourse = this.classCourseService.getClassCourseById(classCourseId).get();
-        List<Grade> grades = currentStudent.getGrades();
 
-        if (grades != null) {
-            int flag = 0;
-            for (Grade grade : grades) {
-                if (grade.getClassCourse() != null && grade.getClassCourse().getId() == classCourseId) {
-                    model.addAttribute("newGrade", grade);
-                    break;
-                }
-                flag++;
-            }
-            if (flag == grades.size()) {
-                Grade grade = new Grade();
-                grade.setClassCourse(currentClassCourse);
-                grade.setStudent(currentStudent);
-                this.gradeService.handleSaveGrade(grade);
-                model.addAttribute("newGrade", grade);
-            }
-        } else {
-            Grade grade = new Grade();
-            grade.setClassCourse(currentClassCourse);
-            grade.setStudent(currentStudent);
-            this.gradeService.handleSaveGrade(grade);
-            model.addAttribute("newGrade", grade);
-        }
+        Grade currentGrade = this.gradeService.getGradeByStudentAndClassCourse(currentStudent, currentClassCourse);
+        model.addAttribute("newGrade", currentGrade);
 
         return "client/teacher/classcourse/studentdetail";
     }
@@ -127,6 +107,11 @@ public class TeacherClassCourseController {
         currentGrade.setMidtermSorce(grade.getMidtermSorce());
         currentGrade.setFinalSorce(grade.getFinalSorce());
         currentGrade.setTotalSorce((double) Math.round(totalSorce * 10) / 10);
+
+        Date dNow = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss");
+        currentGrade.setGradeEntryDate(ft.format(dNow));
+
         this.gradeService.handleSaveGrade(currentGrade);
         return "redirect:/teacher/class-course/{classCourseId}/{studentId}";
     }
