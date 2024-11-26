@@ -13,6 +13,8 @@ public interface ClassCourseRepository extends JpaRepository<ClassCourse, Long> 
 
     long countByTeacher(Teacher teacher);
 
+    List<ClassCourse> findBySemester(String semester);
+
     List<ClassCourse> findBySemesterAndWeekday(String semester, String weekday);
 
     List<ClassCourse> findByClassCourseIdContaining(String classCourseId);

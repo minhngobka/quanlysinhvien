@@ -17,10 +17,24 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Lớp sinh viên
                         </a>
-                        <a class="nav-link" href="/student/grade">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Kết quả học tập
+                        <a class="nav-link d-flex align-items-center" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts" aria-expanded="true" aria-controls="collapseLayouts">
+                            <div class="me-2">
+                                <i class="fas fa-table-columns"></i>
+                            </div>
+                            <span>Kết quả học tập</span>
+                            <div class="ms-auto">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
                         </a>
+                        <div class="collapse show" id="collapseLayouts">
+                            <nav class="nav flex-column ps-3">
+                                <a class="nav-link" href="#" id="course-grade-link">Bảng điểm học
+                                    phần</a>
+                                <a class="nav-link" href="#" id="check-input-grade-link">Bảng điểm kỳ mới nhất</a>
+                            </nav>
+                        </div>
+
                         <a class="nav-link" href="/student/course-registration">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Đăng ký môn học
@@ -29,6 +43,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Thời khóa biểu
                         </a>
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -37,3 +52,15 @@
                 </div>
             </nav>
         </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Lấy liên kết "Bảng điểm học phần"
+                const courseGradeLink = document.getElementById("course-grade-link");
+                const checkInputGradeLink = document.getElementById("check-input-grade-link");
+
+                // Đảm bảo liên kết "Bảng điểm học phần" luôn trỏ đến đường dẫn tuyệt đối "/student/student-course-grade"
+                courseGradeLink.setAttribute("href", "/student/student-course-grade");
+                checkInputGradeLink.setAttribute("href", "/student/student-check-input-grade-term");
+            });
+        </script>

@@ -7,7 +7,7 @@
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Detail Grade</title>
+                    <title>Student Course Grade</title>
 
                     <link href="/css/styles.css" rel="stylesheet" />
                     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
@@ -21,44 +21,54 @@
                         <div id="layoutSidenav_content">
                             <main>
                                 <div class="container-fluid px-4">
-                                    <h1 class="mt-4">Student Points</h1>
+                                    <h1 class="mt-4">Student Course Grade</h1>
                                     <ol class="breadcrumb mb-4">
                                         <li class="breadcrumb-item active"> <a href="/student">Dashboard</a> / Student
-                                            Learning Results</li>
+                                            Course Grade</li>
                                     </ol>
 
                                     <div class="container mt-5">
                                         <div class="row">
                                             <div class="col-12 mx-auto">
                                                 <div class="d-flex justify-content-between">
-                                                    <h3>Kết quả học tập</h3>
+                                                    <h3>Bảng điểm kỳ mới nhất</h3>
                                                 </div>
                                                 <hr />
                                                 <table class="table table-bordered table-hover">
                                                     <thead>
                                                         <tr>
+                                                            <th scope="col">Học kỳ</th>
+                                                            <th scope="col">MSSV</th>
                                                             <th scope="col">Mã lớp</th>
-                                                            <th scope="col">Môn học</th>
-                                                            <th scope="col">Điểm giữa kì</th>
-                                                            <th scope="col">Điểm cuối kì</th>
-                                                            <th scope="col">Kì học</th>
-                                                            <th scope="col">Thao tác</th>
+                                                            <th scope="col">Tín chỉ</th>
+                                                            <th scope="col">Điểm học phần</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <c:forEach var="grade" items="${grades}">
+                                                        <c:forEach var="studentGradeDTO" items="${studentGradeDTOs}">
                                                             <tr>
-                                                                <th scope="row">${grade.classCourse.classCourseId}</th>
-                                                                <td>${grade.classCourse.course.name}</td>
-                                                                <td>${grade.midtermSorce}</td>
-                                                                <td>${grade.finalSorce}</td>
-                                                                <td>${grade.classCourse.semester}</td>
-                                                                <td>
-                                                                    <a href="/student/grade/${grade.id}"
-                                                                        class="btn btn-success">View</a>
-                                                                </td>
+                                                                <td>${studentGradeDTO.semester}</td>
+                                                                <td>${studentGradeDTO.courseId}</td>
+                                                                <td>${studentGradeDTO.courseName}</td>
+                                                                <td>${studentGradeDTO.credits}</td>
+                                                                <td>${studentGradeDTO.coursePoint}</td>
                                                             </tr>
                                                         </c:forEach>
+                                                        <tr class="table-light">
+                                                            <td class="text-end fw-bold border-0">&nbsp;</td>
+                                                            <td class="border-0">
+                                                                <span class="fw-bold">Count: </span>
+                                                                <span class="fw-bold">${countStudentCourses}</span>
+                                                            </td>
+                                                            <td class="border-0">&nbsp;</td>
+                                                            <td class="text-end fw-bold border-0">
+                                                                <span class="fw-bold">TC: </span>
+                                                                <span class="fw-bold">${countStudentCredits}</span>
+                                                            </td>
+                                                            <td class="border-0">&nbsp;</td>
+                                                            <td class="border-0 text-end">&nbsp;</td>
+                                                        </tr>
+
 
                                                     </tbody>
                                                 </table>

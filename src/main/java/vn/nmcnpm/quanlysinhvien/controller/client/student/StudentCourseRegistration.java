@@ -1,5 +1,6 @@
 package vn.nmcnpm.quanlysinhvien.controller.client.student;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -48,9 +49,14 @@ public class StudentCourseRegistration {
         User currentUser = this.userService.getUserById(id).get();
         Student currentStudent = this.studentService.getStudentByUser(currentUser);
 
-        List<CourseRegistration> courseRegistrations = currentStudent.getCourseRegistrations();
+        List<CourseRegistration> currentCourseRegistrations = currentStudent.getCourseRegistrations();
+        List<CourseRegistration> courseRegistrations = new ArrayList<>();
+        for (CourseRegistration courseRegistration : currentCourseRegistrations) {
+            if (courseRegistration.getClassCourse().getSemester().equals("20241"))
+                courseRegistrations.add(courseRegistration);
+        }
 
-        List<ClassCourse> classCourses = this.classCourseService.getAllClassCourses();
+        List<ClassCourse> classCourses = this.classCourseService.getAllClassCoursesBySemester("20241");
         model.addAttribute("classCourses", classCourses);
         model.addAttribute("courseRegistrations", courseRegistrations);
         return "client/student/courseregistration/show";
