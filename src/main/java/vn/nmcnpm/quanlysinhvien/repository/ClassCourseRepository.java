@@ -17,6 +17,8 @@ public interface ClassCourseRepository extends JpaRepository<ClassCourse, Long> 
 
     List<ClassCourse> findBySemesterAndWeekday(String semester, String weekday);
 
+    List<ClassCourse> findBySemesterAndWeekdayAndTimePeriod(String semester, String weekday, String timePeriod);
+
     List<ClassCourse> findByClassCourseIdContaining(String classCourseId);
 
     List<ClassCourse> findByTeacherAndSemesterContaining(Teacher teacher, String semester);

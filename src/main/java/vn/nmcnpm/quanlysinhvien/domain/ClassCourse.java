@@ -42,6 +42,8 @@ public class ClassCourse {
     @NotEmpty(message = "Không được bỏ trống")
     private String preiod;
 
+    private String timePeriod;
+
     @NotNull
     @Min(value = 0, message = "Không được nhỏ hơn 0")
     private int studentLimit;
@@ -146,6 +148,14 @@ public class ClassCourse {
 
     public void setCourseRegistrations(List<CourseRegistration> courseRegistrations) {
         this.courseRegistrations = courseRegistrations;
+    }
+
+    public String getTimePeriod() {
+        return timePeriod;
+    }
+
+    public void setTimePeriod(String timePeriod) {
+        this.timePeriod = timePeriod;
     }
 
 }

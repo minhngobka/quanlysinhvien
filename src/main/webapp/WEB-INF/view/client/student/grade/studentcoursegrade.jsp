@@ -31,7 +31,7 @@
                                         <div class="row">
                                             <div class="col-12 mx-auto">
                                                 <div class="d-flex justify-content-between">
-                                                    <h3>Bảng điểm kỳ mới nhất</h3>
+                                                    <h3>Bảng điểm học phần</h3>
                                                 </div>
                                                 <hr />
                                                 <table class="table table-bordered table-hover">

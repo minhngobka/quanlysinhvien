@@ -34,6 +34,11 @@ public class ClassCourseService {
         return this.classCourseRepository.findBySemesterAndWeekday(semester, weekday);
     }
 
+    public List<ClassCourse> getAllClassCoursesBySemesterAndWeekdayAndTimePeriod(String semester, String weekday,
+            String timePeriod) {
+        return this.classCourseRepository.findBySemesterAndWeekdayAndTimePeriod(semester, weekday, timePeriod);
+    }
+
     public List<ClassCourse> getAllClassCoursesByClassCourseIdOrName(String query) {
         if (query == null || query == "") {
             return this.classCourseRepository.findAll();

@@ -17,11 +17,13 @@ public class CourseRegistrationService {
 
     private final CourseRegistrationRepository courseRegistrationRepository;
     private final StudentRepository studentRepository;
+    private final ClassCourseService classCourseService;
 
     public CourseRegistrationService(CourseRegistrationRepository courseRegistrationRepository,
-            StudentRepository studentRepository) {
+            StudentRepository studentRepository, ClassCourseService classCourseService) {
         this.courseRegistrationRepository = courseRegistrationRepository;
         this.studentRepository = studentRepository;
+        this.classCourseService = classCourseService;
     }
 
     public List<CourseRegistration> getAllCourseRegistrationsByStudentIdOrStudentName(ClassCourse classCourse,
@@ -47,6 +49,24 @@ public class CourseRegistrationService {
             }
         }
         return currentCourseRegistrations;
+    }
+
+    public List<CourseRegistration> getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(
+            Student currentStudent, String semester, String weekday, String timePeriod) {
+        List<CourseRegistration> courseRegistrations = new ArrayList<>();
+        List<ClassCourse> classCourses = this.classCourseService
+                .getAllClassCoursesBySemesterAndWeekdayAndTimePeriod(semester, weekday, timePeriod);
+        if (classCourses != null) {
+            for (ClassCourse classCourse : classCourses) {
+                List<CourseRegistration> currentCourseRegistrations = classCourse.getCourseRegistrations();
+                for (CourseRegistration courseRegistration : currentCourseRegistrations) {
+                    if (courseRegistration.getStudent().getId() == currentStudent.getId()) {
+                        courseRegistrations.add(courseRegistration);
+                    }
+                }
+            }
+        }
+        return courseRegistrations;
     }
 
     public Optional<CourseRegistration> getCourseRegistrationById(long id) {

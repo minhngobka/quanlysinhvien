@@ -179,8 +179,151 @@
                                                                     </c:forEach>
                                                                 </div>
                                                             </th>
-
                                                         </tr>
+                                                        <tr>
+                                                            <td colspan="6" class="text-center">
+                                                                <div
+                                                                    class="p-2 bg-warning text-dark fw-bold border rounded">
+                                                                    Nghỉ trưa
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th>
+                                                                <div class="text-center">
+                                                                    <c:forEach var="courseRegistrationMonday"
+                                                                        items="${courseRegistrationsMondayAfternoon}">
+                                                                        <div
+                                                                            class="mb-2 p-2 border rounded bg-light text-dark">
+                                                                            <span
+                                                                                class="fw-bold">${courseRegistrationMonday.classCourse.classCourseId}</span>
+                                                                            -
+                                                                            <span>${courseRegistrationMonday.classCourse.course.name}</span>
+                                                                            <br>
+                                                                            <small class="text-muted">
+                                                                                Tiết học: <span
+                                                                                    class="fw-semibold">${courseRegistrationMonday.classCourse.preiod}</span>
+                                                                                <br>
+                                                                                Phòng học: <span
+                                                                                    class="fw-semibold">${courseRegistrationMonday.classCourse.classroom}</span>
+                                                                            </small>
+                                                                        </div>
+                                                                    </c:forEach>
+                                                                </div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="text-center">
+                                                                    <c:forEach var="courseRegistrationTuesday"
+                                                                        items="${courseRegistrationsTuesdayAfternoon}">
+                                                                        <div
+                                                                            class="mb-2 p-2 border rounded bg-light text-dark">
+                                                                            <span
+                                                                                class="fw-bold">${courseRegistrationTuesday.classCourse.classCourseId}</span>
+                                                                            -
+                                                                            <span>${courseRegistrationTuesday.classCourse.course.name}</span>
+                                                                            <br>
+                                                                            <small class="text-muted">
+                                                                                Tiết học: <span
+                                                                                    class="fw-semibold">${courseRegistrationTuesday.classCourse.preiod}</span>
+                                                                                <br>
+                                                                                Phòng học: <span
+                                                                                    class="fw-semibold">${courseRegistrationTuesday.classCourse.classroom}</span>
+                                                                            </small>
+                                                                        </div>
+                                                                    </c:forEach>
+                                                                </div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="text-center">
+                                                                    <c:forEach var="courseRegistrationWednesday"
+                                                                        items="${courseRegistrationsWednesdayAfternoon}">
+                                                                        <div
+                                                                            class="mb-2 p-2 border rounded bg-light text-dark">
+                                                                            <span
+                                                                                class="fw-bold">${courseRegistrationWednesday.classCourse.classCourseId}</span>
+                                                                            -
+                                                                            <span>${courseRegistrationWednesday.classCourse.course.name}</span>
+                                                                            <br>
+                                                                            <small class="text-muted">
+                                                                                Tiết học: <span
+                                                                                    class="fw-semibold">${courseRegistrationWednesday.classCourse.preiod}</span>
+                                                                                <br>
+                                                                                Phòng học: <span
+                                                                                    class="fw-semibold">${courseRegistrationWednesday.classCourse.classroom}</span>
+                                                                            </small>
+                                                                        </div>
+                                                                    </c:forEach>
+                                                                </div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="text-center">
+                                                                    <c:forEach var="courseRegistrationThursday"
+                                                                        items="${courseRegistrationsThursdayAfternoon}">
+                                                                        <div
+                                                                            class="mb-2 p-2 border rounded bg-light text-dark">
+                                                                            <span
+                                                                                class="fw-bold">${courseRegistrationThursday.classCourse.classCourseId}</span>
+                                                                            -
+                                                                            <span>${courseRegistrationThursday.classCourse.course.name}</span>
+                                                                            <br>
+                                                                            <small class="text-muted">
+                                                                                Tiết học: <span
+                                                                                    class="fw-semibold">${courseRegistrationThursday.classCourse.preiod}</span>
+                                                                                <br>
+                                                                                Phòng học: <span
+                                                                                    class="fw-semibold">${courseRegistrationThursday.classCourse.classroom}</span>
+                                                                            </small>
+                                                                        </div>
+                                                                    </c:forEach>
+                                                                </div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="text-center">
+                                                                    <c:forEach var="courseRegistrationFriday"
+                                                                        items="${courseRegistrationsFridayAfternoon}">
+                                                                        <div
+                                                                            class="mb-2 p-2 border rounded bg-light text-dark">
+                                                                            <span
+                                                                                class="fw-bold">${courseRegistrationFriday.classCourse.classCourseId}</span>
+                                                                            -
+                                                                            <span>${courseRegistrationFriday.classCourse.course.name}</span>
+                                                                            <br>
+                                                                            <small class="text-muted">
+                                                                                Tiết học: <span
+                                                                                    class="fw-semibold">${courseRegistrationFriday.classCourse.preiod}</span>
+                                                                                <br>
+                                                                                Phòng học: <span
+                                                                                    class="fw-semibold">${courseRegistrationFriday.classCourse.classroom}</span>
+                                                                            </small>
+                                                                        </div>
+                                                                    </c:forEach>
+                                                                </div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="text-center">
+                                                                    <c:forEach var="courseRegistrationSaturday"
+                                                                        items="${courseRegistrationsSaturdayAfternoon}">
+                                                                        <div
+                                                                            class="mb-2 p-2 border rounded bg-light text-dark">
+                                                                            <span
+                                                                                class="fw-bold">${courseRegistrationSaturday.classCourse.classCourseId}</span>
+                                                                            -
+                                                                            <span>${courseRegistrationSaturday.classCourse.course.name}</span>
+                                                                            <br>
+                                                                            <small class="text-muted">
+                                                                                Tiết học: <span
+                                                                                    class="fw-semibold">${courseRegistrationSaturday.classCourse.preiod}</span>
+                                                                                <br>
+                                                                                Phòng học: <span
+                                                                                    class="fw-semibold">${courseRegistrationSaturday.classCourse.classroom}</span>
+                                                                            </small>
+                                                                        </div>
+                                                                    </c:forEach>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+
                                                     </tbody>
                                                 </table>
                                             </div>

@@ -1,6 +1,5 @@
 package vn.nmcnpm.quanlysinhvien.controller.client.student;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -9,11 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import vn.nmcnpm.quanlysinhvien.domain.ClassCourse;
 import vn.nmcnpm.quanlysinhvien.domain.CourseRegistration;
 import vn.nmcnpm.quanlysinhvien.domain.Student;
 import vn.nmcnpm.quanlysinhvien.domain.User;
-import vn.nmcnpm.quanlysinhvien.service.ClassCourseService;
+import vn.nmcnpm.quanlysinhvien.service.CourseRegistrationService;
 import vn.nmcnpm.quanlysinhvien.service.StudentService;
 import vn.nmcnpm.quanlysinhvien.service.UserService;
 
@@ -22,13 +20,13 @@ public class StudentTimeTableController {
 
     private final UserService userService;
     private final StudentService studentService;
-    private final ClassCourseService classCourseService;
+    private final CourseRegistrationService courseRegistrationService;
 
     public StudentTimeTableController(UserService userService, StudentService studentService,
-            ClassCourseService classCourseService) {
+            CourseRegistrationService courseRegistrationService) {
         this.userService = userService;
         this.studentService = studentService;
-        this.classCourseService = classCourseService;
+        this.courseRegistrationService = courseRegistrationService;
     }
 
     @GetMapping("/student/timetable")
@@ -38,89 +36,43 @@ public class StudentTimeTableController {
         User currentUser = this.userService.getUserById(id).get();
         Student currentStudent = this.studentService.getStudentByUser(currentUser);
 
-        List<ClassCourse> classCoursesMonday = this.classCourseService.getAllClassCoursesBySemesterAndWeekday("20241",
-                "2");
-        List<CourseRegistration> courseRegistrationsMonday = new ArrayList<>();
-        if (classCoursesMonday != null) {
-            for (ClassCourse classCourseMonday : classCoursesMonday) {
-                List<CourseRegistration> currentCourseRegistrations = classCourseMonday.getCourseRegistrations();
-                for (CourseRegistration courseRegistration : currentCourseRegistrations) {
-                    if (courseRegistration.getStudent().getId() == currentStudent.getId()) {
-                        courseRegistrationsMonday.add(courseRegistration);
-                    }
-                }
-            }
-        }
+        List<CourseRegistration> courseRegistrationsMonday = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "2",
+                        "Sáng");
+        List<CourseRegistration> courseRegistrationsTuesday = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "3",
+                        "Sáng");
+        List<CourseRegistration> courseRegistrationsWednesday = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "4",
+                        "Sáng");
+        List<CourseRegistration> courseRegistrationsThursday = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "5",
+                        "Sáng");
+        List<CourseRegistration> courseRegistrationsFriday = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "6",
+                        "Sáng");
+        List<CourseRegistration> courseRegistrationsSaturday = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "7",
+                        "Sáng");
 
-        List<ClassCourse> classCoursesTuesday = this.classCourseService.getAllClassCoursesBySemesterAndWeekday("20241",
-                "3");
-        List<CourseRegistration> courseRegistrationsTuesday = new ArrayList<>();
-        if (classCoursesTuesday != null) {
-            for (ClassCourse classCourseTuesday : classCoursesTuesday) {
-                List<CourseRegistration> currentCourseRegistrations = classCourseTuesday.getCourseRegistrations();
-                for (CourseRegistration courseRegistration : currentCourseRegistrations) {
-                    if (courseRegistration.getStudent().getId() == currentStudent.getId()) {
-                        courseRegistrationsTuesday.add(courseRegistration);
-                    }
-                }
-            }
-        }
-
-        List<ClassCourse> classCoursesWednesday = this.classCourseService
-                .getAllClassCoursesBySemesterAndWeekday("20241", "4");
-        List<CourseRegistration> courseRegistrationsWednesday = new ArrayList<>();
-        if (classCoursesWednesday != null) {
-            for (ClassCourse classCourseWednesday : classCoursesWednesday) {
-                List<CourseRegistration> currentCourseRegistrations = classCourseWednesday.getCourseRegistrations();
-                for (CourseRegistration courseRegistration : currentCourseRegistrations) {
-                    if (courseRegistration.getStudent().getId() == currentStudent.getId()) {
-                        courseRegistrationsWednesday.add(courseRegistration);
-                    }
-                }
-            }
-        }
-
-        List<ClassCourse> classCoursesThursday = this.classCourseService.getAllClassCoursesBySemesterAndWeekday("20241",
-                "5");
-        List<CourseRegistration> courseRegistrationsThursday = new ArrayList<>();
-        if (classCoursesThursday != null) {
-            for (ClassCourse classCourseThursday : classCoursesThursday) {
-                List<CourseRegistration> currentCourseRegistrations = classCourseThursday.getCourseRegistrations();
-                for (CourseRegistration courseRegistration : currentCourseRegistrations) {
-                    if (courseRegistration.getStudent().getId() == currentStudent.getId()) {
-                        courseRegistrationsThursday.add(courseRegistration);
-                    }
-                }
-            }
-        }
-
-        List<ClassCourse> classCoursesFriday = this.classCourseService.getAllClassCoursesBySemesterAndWeekday("20241",
-                "6");
-        List<CourseRegistration> courseRegistrationsFriday = new ArrayList<>();
-        if (classCoursesFriday != null) {
-            for (ClassCourse classCourseFriday : classCoursesFriday) {
-                List<CourseRegistration> currentCourseRegistrations = classCourseFriday.getCourseRegistrations();
-                for (CourseRegistration courseRegistration : currentCourseRegistrations) {
-                    if (courseRegistration.getStudent().getId() == currentStudent.getId()) {
-                        courseRegistrationsFriday.add(courseRegistration);
-                    }
-                }
-            }
-        }
-
-        List<ClassCourse> classCoursesSaturday = this.classCourseService.getAllClassCoursesBySemesterAndWeekday("20241",
-                "7");
-        List<CourseRegistration> courseRegistrationsSaturday = new ArrayList<>();
-        if (classCoursesSaturday != null) {
-            for (ClassCourse classCourseSaturday : classCoursesSaturday) {
-                List<CourseRegistration> currentCourseRegistrations = classCourseSaturday.getCourseRegistrations();
-                for (CourseRegistration courseRegistration : currentCourseRegistrations) {
-                    if (courseRegistration.getStudent().getId() == currentStudent.getId()) {
-                        courseRegistrationsSaturday.add(courseRegistration);
-                    }
-                }
-            }
-        }
+        List<CourseRegistration> courseRegistrationsMondayAfternoon = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "2",
+                        "Chiều");
+        List<CourseRegistration> courseRegistrationsTuesdayAfternoon = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "3",
+                        "Chiều");
+        List<CourseRegistration> courseRegistrationsWednesdayAfternoon = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "4",
+                        "Chiều");
+        List<CourseRegistration> courseRegistrationsThursdayAfternoon = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "5",
+                        "Chiều");
+        List<CourseRegistration> courseRegistrationsFridayAfternoon = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "6",
+                        "Chiều");
+        List<CourseRegistration> courseRegistrationsSaturdayAfternoon = this.courseRegistrationService
+                .getAllCourseRegistrationsByStudentAndSemesterAndWeekdayAndTimePeriod(currentStudent, "20241", "7",
+                        "Chiều");
 
         model.addAttribute("courseRegistrationsMonday", courseRegistrationsMonday);
         model.addAttribute("courseRegistrationsTuesday", courseRegistrationsTuesday);
@@ -128,7 +80,13 @@ public class StudentTimeTableController {
         model.addAttribute("courseRegistrationsThursday", courseRegistrationsThursday);
         model.addAttribute("courseRegistrationsFriday", courseRegistrationsFriday);
         model.addAttribute("courseRegistrationsSaturday", courseRegistrationsSaturday);
+
+        model.addAttribute("courseRegistrationsMondayAfternoon", courseRegistrationsMondayAfternoon);
+        model.addAttribute("courseRegistrationsTuesdayAfternoon", courseRegistrationsTuesdayAfternoon);
+        model.addAttribute("courseRegistrationsWednesdayAfternoon", courseRegistrationsWednesdayAfternoon);
+        model.addAttribute("courseRegistrationsThursdayAfternoon", courseRegistrationsThursdayAfternoon);
+        model.addAttribute("courseRegistrationsFridayAfternoon", courseRegistrationsFridayAfternoon);
+        model.addAttribute("courseRegistrationsSaturdayAfternoon", courseRegistrationsSaturdayAfternoon);
         return "client/student/timetable/show";
     }
-
 }
