@@ -40,20 +40,24 @@
                                                             <th scope="col">MSSV</th>
                                                             <th scope="col">Mã lớp</th>
                                                             <th scope="col">Môn học</th>
-                                                            <th scope="col">Trọng số</th>
-                                                            <th scope="col">Điểm giữa kì</th>
-                                                            <th scope="col">Điểm cuối kì</th>
+                                                            <th scope="col">Trọng số QT</th>
+                                                            <th scope="col">Điểm QT</th>
+                                                            <th scope="col">Trạng thái điểm QT</th>
+                                                            <th scope="col">Điểm thi</th>
+                                                            <th scope="col">Trạng thái điểm thi</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <c:forEach var="grade" items="${grades}">
+                                                        <c:forEach var="studentGradeDTO" items="${studentGradeDTOs}">
                                                             <tr>
-                                                                <td>${grade.student.studentId}</td>
-                                                                <td>${grade.classCourse.classCourseId}</td>
-                                                                <td>${grade.classCourse.course.name}</td>
-                                                                <td>${grade.classCourse.course.coefficient}</td>
-                                                                <td>${grade.midtermSorce}</td>
-                                                                <td>${grade.finalSorce}</td>
+                                                                <td>${studentGradeDTO.studentId}</td>
+                                                                <td>${studentGradeDTO.classCourseId}</td>
+                                                                <td>${studentGradeDTO.courseName}</td>
+                                                                <td>${studentGradeDTO.processWeight}</td>
+                                                                <td>${studentGradeDTO.midtermPoint}</td>
+                                                                <td>${studentGradeDTO.statusMidtermPoint}</td>
+                                                                <td>${studentGradeDTO.finalPoint}</td>
+                                                                <td>${studentGradeDTO.statusFinalPoint}</td>
                                                             </tr>
                                                         </c:forEach>
 

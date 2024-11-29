@@ -26,6 +26,10 @@ public class CourseRegistrationService {
         this.classCourseService = classCourseService;
     }
 
+    public List<CourseRegistration> getAllCourseRegistrationsByStatus(String status) {
+        return this.courseRegistrationRepository.findByStatus(status);
+    }
+
     public List<CourseRegistration> getAllCourseRegistrationsByStudentIdOrStudentName(ClassCourse classCourse,
             String query) {
         List<CourseRegistration> courseRegistrations = classCourse.getCourseRegistrations();
@@ -80,4 +84,5 @@ public class CourseRegistrationService {
     public void deleteCourseRegistrationById(long id) {
         this.courseRegistrationRepository.deleteById(id);
     }
+
 }

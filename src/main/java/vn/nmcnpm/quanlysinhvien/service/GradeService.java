@@ -50,27 +50,45 @@ public class GradeService {
 
     public StudentGradeDTO gradeToStudentGradeDTO(Grade grade) {
         StudentGradeDTO studentGradeDTO = new StudentGradeDTO();
+        studentGradeDTO.setStudentId(grade.getStudent().getStudentId());
         studentGradeDTO.setCourseId(grade.getClassCourse().getCourse().getCourseId());
+        studentGradeDTO.setClassCourseId(grade.getClassCourse().getClassCourseId());
         studentGradeDTO.setCourseName(grade.getClassCourse().getCourse().getName());
         studentGradeDTO.setCredits(grade.getClassCourse().getCourse().getTheoreticalCredits());
+        String processWeight = grade.getClassCourse().getCourse().getCoefficient();
+        studentGradeDTO.setProcessWeight(processWeight.substring(0, 3));
         studentGradeDTO.setSemester(grade.getClassCourse().getSemester());
-        if (grade.getFinalSorce() < 4)
+        if (grade.getMidtermSorce() != -1) {
+            studentGradeDTO.setMidtermPoint(grade.getMidtermSorce() + "");
+            studentGradeDTO.setStatusMidtermPoint("mới nhập");
+        } else {
+            studentGradeDTO.setStatusMidtermPoint("chưa nhập");
+            studentGradeDTO.setMidtermPoint("--");
+        }
+        if (grade.getFinalSorce() != -1) {
+            studentGradeDTO.setFinalPoint(grade.getFinalSorce() + "");
+            studentGradeDTO.setStatusFinalPoint("mới nhập");
+        } else {
+            studentGradeDTO.setFinalPoint("--");
+            studentGradeDTO.setStatusFinalPoint("chưa nhập");
+        }
+        if (grade.getTotalSorce() < 4)
             studentGradeDTO.setCoursePoint("F");
-        else if (grade.getFinalSorce() < 5)
+        else if (grade.getTotalSorce() < 5)
             studentGradeDTO.setCoursePoint("D");
-        else if (grade.getFinalSorce() < 5.5)
+        else if (grade.getTotalSorce() < 5.5)
             studentGradeDTO.setCoursePoint("D+");
-        else if (grade.getFinalSorce() < 6.5)
+        else if (grade.getTotalSorce() < 6.5)
             studentGradeDTO.setCoursePoint("C");
-        else if (grade.getFinalSorce() < 7)
+        else if (grade.getTotalSorce() < 7)
             studentGradeDTO.setCoursePoint("C+");
-        else if (grade.getFinalSorce() < 8)
+        else if (grade.getTotalSorce() < 8)
             studentGradeDTO.setCoursePoint("B");
-        else if (grade.getFinalSorce() < 8.5)
+        else if (grade.getTotalSorce() < 8.5)
             studentGradeDTO.setCoursePoint("B+");
-        else if (grade.getFinalSorce() < 9)
+        else if (grade.getTotalSorce() < 9.5)
             studentGradeDTO.setCoursePoint("A");
-        else if (grade.getFinalSorce() < 10)
+        else if (grade.getTotalSorce() <= 10)
             studentGradeDTO.setCoursePoint("A+");
 
         return studentGradeDTO;

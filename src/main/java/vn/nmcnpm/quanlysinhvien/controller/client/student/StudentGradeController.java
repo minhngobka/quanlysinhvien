@@ -44,8 +44,10 @@ public class StudentGradeController {
         List<StudentGradeDTO> studentGradeDTOs = new ArrayList<>();
         int countStudentCredits = 0;
         for (Grade grade : grades) {
-            studentGradeDTOs.add(this.gradeService.gradeToStudentGradeDTO(grade));
-            countStudentCredits += grade.getClassCourse().getCourse().getTheoreticalCredits();
+            if (grade.getMidtermSorce() != -1 || grade.getFinalSorce() != -1) {
+                studentGradeDTOs.add(this.gradeService.gradeToStudentGradeDTO(grade));
+                countStudentCredits += grade.getClassCourse().getCourse().getTheoreticalCredits();
+            }
         }
         studentGradeDTOs.sort(Comparator.comparing((StudentGradeDTO s) -> s.getSemester()).reversed());
 
@@ -65,8 +67,11 @@ public class StudentGradeController {
         Student currentStudent = this.studentService.getStudentByUser(currentUser);
 
         List<Grade> grades = this.gradeService.getGradeByStudentAndSemester(currentStudent, "20241");
-
-        model.addAttribute("grades", grades);
+        List<StudentGradeDTO> studentGradeDTOs = new ArrayList<>();
+        for (Grade grade : grades) {
+            studentGradeDTOs.add(this.gradeService.gradeToStudentGradeDTO(grade));
+        }
+        model.addAttribute("studentGradeDTOs", studentGradeDTOs);
 
         return "client/student/grade/studentcheckinputgradeterm";
     }

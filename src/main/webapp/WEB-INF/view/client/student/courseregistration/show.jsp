@@ -71,6 +71,10 @@
 
                                                     </tbody>
                                                 </table>
+                                                <div class="d-flex">
+                                                    <a href="/student/course-registration/access"
+                                                        class="btn btn-primary ms-auto">Xác nhận</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

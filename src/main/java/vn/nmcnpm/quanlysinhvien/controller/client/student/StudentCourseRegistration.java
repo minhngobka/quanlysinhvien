@@ -87,13 +87,9 @@ public class StudentCourseRegistration {
                 CourseRegistration courseRegistration = new CourseRegistration();
                 courseRegistration.setClassCourse(currentClassCourse);
                 courseRegistration.setStudent(currentStudent);
-                courseRegistration.setStatus("Thành Công");
+                courseRegistration.setStatus("Đã gửi");
                 this.courseRegistrationService.handleSaveCourseRegistration(courseRegistration);
 
-                Grade grade = new Grade();
-                grade.setStudent(currentStudent);
-                grade.setClassCourse(currentClassCourse);
-                this.gradeService.handleSaveGrade(grade);
             }
         }
 
@@ -106,15 +102,42 @@ public class StudentCourseRegistration {
 
         CourseRegistration currentCourseRegistration = this.courseRegistrationService.getCourseRegistrationById(id)
                 .get();
-        Student currentStudent = currentCourseRegistration.getStudent();
-        List<Grade> grades = currentStudent.getGrades();
-        for (Grade grade : grades) {
-            if (grade.getClassCourse().getId() == currentCourseRegistration.getClassCourse().getId()) {
-                this.gradeService.deleteGradeById(grade.getId());
-                break;
+        currentCourseRegistration.setStatus("Đã xóa");
+
+        return "redirect:/student/course-registration";
+    }
+
+    @GetMapping("/student/course-registration/access")
+    public String deleteAllStudentCourseRegistration(Model model) {
+
+        List<CourseRegistration> courseRegistrations = this.courseRegistrationService
+                .getAllCourseRegistrationsByStatus("Đã xóa");
+        for (CourseRegistration courseRegistration : courseRegistrations) {
+            Student currentStudent = courseRegistration.getStudent();
+            List<Grade> grades = currentStudent.getGrades();
+            for (Grade grade : grades) {
+                if (grade.getClassCourse().getId() == courseRegistration.getClassCourse().getId()) {
+                    this.gradeService.deleteGradeById(grade.getId());
+                    break;
+                }
             }
         }
-        this.courseRegistrationService.deleteCourseRegistrationById(id);
+
+        for (CourseRegistration courseRegistration : courseRegistrations) {
+            this.courseRegistrationService.deleteCourseRegistrationById(courseRegistration.getId());
+        }
+
+        List<CourseRegistration> courseRegistrations2 = this.courseRegistrationService
+                .getAllCourseRegistrationsByStatus("Đã gửi");
+        for (CourseRegistration courseRegistration : courseRegistrations2) {
+            courseRegistration.setStatus("Thành Công");
+            Grade grade = new Grade();
+            grade.setStudent(courseRegistration.getStudent());
+            grade.setClassCourse(courseRegistration.getClassCourse());
+            grade.setMidtermSorce(-1);
+            grade.setFinalSorce(-1);
+            this.gradeService.handleSaveGrade(grade);
+        }
 
         return "redirect:/student/course-registration";
     }
