@@ -44,6 +44,7 @@
                                                             <th scope="col">Giới hạn</th>
                                                             <th scope="col">Tiết học</th>
                                                             <th scope="col">Thứ</th>
+                                                            <th scope="col">Buổi</th>
                                                             <th scope="col">Học kỳ</th>
                                                             <th scope="col">Trạng thái</th>
                                                             <th scope="col">Thao tác</th>
@@ -59,6 +60,7 @@
                                                                 <td>${courseRegistration.classCourse.studentLimit}</td>
                                                                 <td>${courseRegistration.classCourse.preiod}</td>
                                                                 <td>${courseRegistration.classCourse.weekday}</td>
+                                                                <td>${courseRegistration.classCourse.timePeriod}</td>
                                                                 <td>${courseRegistration.classCourse.semester}</td>
                                                                 <td>${courseRegistration.status}</td>
                                                                 <td>
@@ -95,6 +97,7 @@
                                                             <th scope="col">Giới hạn</th>
                                                             <th scope="col">Tiết học</th>
                                                             <th scope="col">Thứ</th>
+                                                            <th scope="col">Buổi</th>
                                                             <th scope="col">Học kỳ</th>
                                                             <th scope="col">Thao tác</th>
                                                         </tr>
@@ -108,6 +111,7 @@
                                                                 <td>${classCourse.studentLimit}</td>
                                                                 <td>${classCourse.preiod}</td>
                                                                 <td>${classCourse.weekday}</td>
+                                                                <td>${classCourse.timePeriod}</td>
                                                                 <td>${classCourse.semester}</td>
                                                                 <td>
                                                                     <form method="post"

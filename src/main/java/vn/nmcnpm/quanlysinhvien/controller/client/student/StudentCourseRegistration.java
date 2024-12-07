@@ -81,6 +81,25 @@ public class StudentCourseRegistration {
                         && courseRegistration.getClassCourse().getSemester().equals(currentClassCourse.getSemester())) {
                     return "redirect:/student/course-registration";
                 }
+                if (courseRegistration.getClassCourse().getSemester().equals(currentClassCourse.getSemester())) {
+                    if (courseRegistration.getClassCourse().getWeekday().equals(currentClassCourse.getWeekday())
+                            && courseRegistration.getClassCourse().getTimePeriod()
+                                    .equals(currentClassCourse.getTimePeriod())) {
+                        String preiod1 = courseRegistration.getClassCourse().getPreiod();
+                        String preiod2 = currentClassCourse.getPreiod();
+                        int flag1 = preiod2.charAt(0) - preiod1.charAt(2);
+                        int flag2 = preiod2.charAt(2) - preiod1.charAt(0);
+                        if (flag1 == 0 || flag2 == 0) {
+                            return "redirect:/student/course-registration";
+                        }
+                        if (flag1 > 0 && flag2 < 0) {
+                            return "redirect:/student/course-registration";
+                        }
+                        if (flag1 < 0 && flag2 > 0) {
+                            return "redirect:/student/course-registration";
+                        }
+                    }
+                }
                 flag++;
             }
             if (flag == courseRegistrations.size()) {
