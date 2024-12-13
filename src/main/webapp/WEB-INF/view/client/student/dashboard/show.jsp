@@ -27,7 +27,7 @@
                                 <a class="breadcrumb-item active" href="#">Dashboard</a>
                             </ol>
                             <div class="row">
-                                <div class="col-xl-4 col-md-6">
+                                <div class="col-md-6">
                                     <div class="card bg-success text-white mb-4">
                                         <div class="card-body">Hồ sơ</div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
@@ -37,7 +37,62 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="card bg-primary text-white mb-4">
+                                        <div class="card-body">Lớp sinh viên</div>
+                                        <div class="card-footer d-flex align-items-center justify-content-between">
+                                            <a class="small text-white stretched-link" href="/student/class">View
+                                                Details</a>
+                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card bg-warning text-white mb-4">
+                                        <div class="card-body">Bảng điểm học phần</div>
+                                        <div class="card-footer d-flex align-items-center justify-content-between">
+                                            <a class="small text-white stretched-link"
+                                                href="/student/student-course-grade">View Details</a>
+                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card bg-danger text-white mb-4">
+                                        <div class="card-body">Bảng điểm nhập kì mới nhất</div>
+                                        <div class="card-footer d-flex align-items-center justify-content-between">
+                                            <a class="small text-white stretched-link"
+                                                href="/student/student-check-input-grade-term">View Details</a>
+                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card bg-info text-white mb-4">
+                                        <div class="card-body">Đăng kí môn học</div>
+                                        <div class="card-footer d-flex align-items-center justify-content-between">
+                                            <a class="small text-white stretched-link"
+                                                href="/student/course-registration">View Details</a>
+                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card bg-secondary text-white mb-4">
+                                        <div class="card-body">Thời khóa biểu</div>
+                                        <div class="card-footer d-flex align-items-center justify-content-between">
+                                            <a class="small text-white stretched-link" href="/student/timetable">View
+                                                Details</a>
+                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
 
                         </div>
                     </main>
