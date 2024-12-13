@@ -66,6 +66,11 @@
                           </tr>
                         </thead>
                         <tbody>
+                          <c:if test="${empty teachers}">
+                            <tr>
+                              <td colspan="6" class="no-data">Không tìm thấy kết quả phù hợp</td>
+                            </tr>
+                          </c:if>
                           <c:forEach var="teacher" items="${teachers}">
                             <tr>
                               <th>${teacher.teacherId}</th>

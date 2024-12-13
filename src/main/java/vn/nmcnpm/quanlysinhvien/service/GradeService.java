@@ -72,24 +72,26 @@ public class GradeService {
             studentGradeDTO.setFinalPoint("--");
             studentGradeDTO.setStatusFinalPoint("chưa nhập");
         }
-        if (grade.getTotalSorce() < 4)
-            studentGradeDTO.setCoursePoint("F");
-        else if (grade.getTotalSorce() < 5)
-            studentGradeDTO.setCoursePoint("D");
-        else if (grade.getTotalSorce() < 5.5)
-            studentGradeDTO.setCoursePoint("D+");
-        else if (grade.getTotalSorce() < 6.5)
-            studentGradeDTO.setCoursePoint("C");
-        else if (grade.getTotalSorce() < 7)
-            studentGradeDTO.setCoursePoint("C+");
-        else if (grade.getTotalSorce() < 8)
-            studentGradeDTO.setCoursePoint("B");
-        else if (grade.getTotalSorce() < 8.5)
-            studentGradeDTO.setCoursePoint("B+");
-        else if (grade.getTotalSorce() < 9.5)
-            studentGradeDTO.setCoursePoint("A");
-        else if (grade.getTotalSorce() <= 10)
-            studentGradeDTO.setCoursePoint("A+");
+        if (grade.getMidtermSorce() != -1 && grade.getFinalSorce() != -1) {
+            if (grade.getTotalSorce() < 4)
+                studentGradeDTO.setCoursePoint("F");
+            else if (grade.getTotalSorce() < 5)
+                studentGradeDTO.setCoursePoint("D");
+            else if (grade.getTotalSorce() < 5.5)
+                studentGradeDTO.setCoursePoint("D+");
+            else if (grade.getTotalSorce() < 6.5)
+                studentGradeDTO.setCoursePoint("C");
+            else if (grade.getTotalSorce() < 7)
+                studentGradeDTO.setCoursePoint("C+");
+            else if (grade.getTotalSorce() < 8)
+                studentGradeDTO.setCoursePoint("B");
+            else if (grade.getTotalSorce() < 8.5)
+                studentGradeDTO.setCoursePoint("B+");
+            else if (grade.getTotalSorce() < 9.5)
+                studentGradeDTO.setCoursePoint("A");
+            else if (grade.getTotalSorce() <= 10)
+                studentGradeDTO.setCoursePoint("A+");
+        }
 
         return studentGradeDTO;
     }

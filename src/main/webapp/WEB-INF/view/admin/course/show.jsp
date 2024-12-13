@@ -65,6 +65,11 @@
                           </tr>
                         </thead>
                         <tbody>
+                          <c:if test="${empty courseDTOs}">
+                            <tr>
+                              <td colspan="5" class="no-data">Không tìm thấy kết quả phù hợp</td>
+                            </tr>
+                          </c:if>
                           <c:forEach var="courseDTO" items="${courseDTOs}">
                             <tr>
                               <th>${courseDTO.id}</th>

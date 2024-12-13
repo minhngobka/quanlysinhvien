@@ -64,6 +64,11 @@
                           </tr>
                         </thead>
                         <tbody>
+                          <c:if test="${empty classes}">
+                            <tr>
+                              <td colspan="4" class="no-data">Không tìm thấy kết quả phù hợp</td>
+                            </tr>
+                          </c:if>
                           <c:forEach var="classe" items="${classes}">
                             <tr>
                               <th>${classe.id}</th>
